@@ -1,0 +1,102 @@
+{
+  "name": "Kitodo Template",
+  "prefix": "template",
+  "uri": "http://www.kitodo.org/template",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+    {
+      "name": "TemplateTaskEvent",
+      "extends": [
+        "bpmn:Task"
+      ],
+      "properties": [
+        {
+          "name": "priority",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "editType",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "processingStatus",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "typeMetadata",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeAutomatic",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeImportFileUpload",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeExportRussian",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeImagesRead",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeImagesWrite",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeExportDMS",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeAcceptClose",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeCloseVerify",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "batchStep",
+          "isAttr": true,
+          "type": "Boolean"
+        }
+      ]
+    },
+    {
+      "name": "TemplateScriptTaskEvent",
+      "extends": [
+        "bpmn:ScriptTask"
+      ],
+      "properties": [
+        {
+          "name": "scriptName",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "scriptPath",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}

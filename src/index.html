@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>bpmn-js-properties-panel extension demo</title>
+
+  <link rel="stylesheet" href="css/diagram-js.css" />
+  <link rel="stylesheet" href="vendor/bpmn-font/css/bpmn-embedded.css" />
+  <link rel="stylesheet" href="css/src.css" />
+</head>
+<body>
+  <div style="height: 800px;">
+        <div class="content" id="js-drop-zone">
+
+            <div class="message intro">
+                <div class="note">
+                    Drop BPMN diagram from your desktop or <a id="js-create-diagram">create a new diagram</a> to get started.
+                </div>
+            </div>
+
+            <div class="message error">
+                <div class="note">
+                    <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
+
+                    <div class="details">
+                        <span>cause of the problem</span>
+                        <pre></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas" id="js-canvas"></div>
+            <div class="properties-panel-parent" id="js-properties-panel"></div>
+        </div>
+    </div>
+
+  <script src="index.js"></script>
+</html>
