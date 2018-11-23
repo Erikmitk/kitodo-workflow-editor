@@ -1,29 +1,20 @@
 {
-  "name": "bpmn-js-example-properties-panel-extension",
+  "name": "bpmn-editor-customization-kitodo-production",
   "version": "0.0.0",
-  "description": "A properties panel extension example",
-  "main": "app/index.js",
+  "description": "A customized version of BPMN.io with property panel extension",
+  "main": "src/index.js",
   "scripts": {
     "all": "grunt",
     "dev": "grunt auto-build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bpmn-io/bpmn-js-examples"
+    "url": "https://git.slub-dresden.de/sommer/kitodo-workflow-editor"
   },
-  "keywords": [
-    "bpmnjs-example"
-  ],
   "author": {
-    "name": "Patrick Dehn",
-    "url": "https://github.com/pedesen"
+    "name": "Erik Sommer",
+    "url": "https://github.com/erikmitk"
   },
-  "contributors": [
-    {
-      "name": "bpmn.io contributors",
-      "url": "https://github.com/bpmn-io"
-    }
-  ],
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -31,9 +22,10 @@
     "babelify": "^8.0.0",
     "grunt": "~1.0.1",
     "grunt-browserify": "^5.0.0",
-    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "~1.0.0",
     "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-uglify": "^4.0.0",
     "grunt-contrib-watch": "~1.0.0",
     "load-grunt-tasks": "~3.5.0",
     "stringify": "^3.1.0"
