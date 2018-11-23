@@ -9,7 +9,7 @@ import eventProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/EventPr
 import linkProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/LinkProps';
 import idProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/IdProps';
 import nameProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/NameProps';
-
+import conditionalProps from 'bpmn-js-properties-panel/lib/provider/camunda/parts/ConditionalProps';
 
 // Require your custom property entries.
 import scriptTaskProperties from './parts/ScriptTaskProperties';
@@ -36,6 +36,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
     };
     linkProps(detailsGroup, element, translate);
     eventProps(detailsGroup, element, bpmnFactory, elementRegistry, translate);
+    conditionalProps(detailsGroup, element, bpmnFactory, translate);
 
     // Create a group called "Task Properties".
     var taskGroup = {
