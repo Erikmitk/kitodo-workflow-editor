@@ -1,8 +1,9 @@
 import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
 
 import {
-  is
+    is
 } from 'bpmn-js/lib/util/ModelUtil';
+
 
 export default function (group, element) {
 
@@ -97,6 +98,14 @@ export default function (group, element) {
             description: '',
             label: 'Batch task',
             modelProperty: 'batchStep'
+        }));
+
+        group.entries.push(entryFactory.selectBox({
+            id: 'permittedUserRole',
+            description: '',
+            label: 'Permitted User Role',
+            selectOptions : availableUserRoles,
+            modelProperty: 'permittedUserRole'
         }));
     }
 

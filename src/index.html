@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>bpmn-js-properties-panel extension demo</title>
-
-  <link rel="stylesheet" href="css/diagram-js.css" />
-  <link rel="stylesheet" href="vendor/bpmn-font/css/bpmn-embedded.css" />
-  <link rel="stylesheet" href="css/src.css" />
+  <title>Kitodo.Production Custom bpmn.io Editor</title>
+  <link rel="stylesheet" href="modeler.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-  <div style="height: 800px;">
-        <div class="content" id="js-drop-zone">
+  <div class="content" id="js-drop-zone">
 
-            <div class="message intro">
-                <div class="note">
-                    Drop BPMN diagram from your desktop or <a id="js-create-diagram">create a new diagram</a> to get started.
-                </div>
-            </div>
-
-            <div class="message error">
-                <div class="note">
-                    <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
-
-                    <div class="details">
-                        <span>cause of the problem</span>
-                        <pre></pre>
-                    </div>
-                </div>
-            </div>
-
-            <div class="canvas" id="js-canvas"></div>
-            <div class="properties-panel-parent" id="js-properties-panel"></div>
+      <div class="message intro">
+        <div class="note">
+          Drop BPMN diagram from your desktop or <a href="#" id="editForm:workflowTabView:js-create-diagram" name="editForm:workflowTabView:js-create-diagram">create a new diagram</a> to get started.
         </div>
-    </div>
+      </div>
 
-  <script src="index.js"></script>
+      <div class="message error">
+        <div class="note">
+          <p>Ooops, we could not display the BPMN 2.0 diagram.</p>
+
+          <div class="details">
+            <span>cause of the problem</span>
+            <pre></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas" id="js-canvas"></div>
+      <div id="js-properties-panel"></div>
+
+      <select id="editForm:workflowTabView:roleId_input" name="editForm:workflowTabView:roleId_input" tabindex="-1" aria-hidden="true" style="visibility: hidden; width: 1px; height: 1px; position: absolute;">
+      <option value="1">Administration</option>
+      <option value="2">Scanning</option>
+      <option value="3">QualityControl</option>
+      <option value="4">Imaging</option>
+      <option value="5">Metadata</option>
+      <option value="6">Projectmanagement</option>
+      <option value="8">ClientManagement</option>
+      <option value="9">RoleManagement</option>
+      <option value="10">UserManagement</option>
+      <option value="11">ProcessManagement</option>
+    </select>
+  </div>
+
+  <script src="modeler_min.js"></script>
+  <script src="modeler_custom.js"></script>
+
 </html>

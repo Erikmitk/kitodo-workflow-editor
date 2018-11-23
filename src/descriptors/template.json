@@ -39,16 +39,6 @@
           "type": "Boolean"
         },
         {
-          "name": "typeImportFileUpload",
-          "isAttr": true,
-          "type": "Boolean"
-        },
-        {
-          "name": "typeExportRussian",
-          "isAttr": true,
-          "type": "Boolean"
-        },
-        {
           "name": "typeImagesRead",
           "isAttr": true,
           "type": "Boolean"
@@ -77,6 +67,11 @@
           "name": "batchStep",
           "isAttr": true,
           "type": "Boolean"
+        },
+        {
+          "name": "permittedUserRole",
+          "isAttr": true,
+          "type": "Integer"
         }
       ]
     },

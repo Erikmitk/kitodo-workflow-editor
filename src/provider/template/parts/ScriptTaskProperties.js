@@ -1,7 +1,7 @@
 import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
 
 import {
-  is
+    is
 } from 'bpmn-js/lib/util/ModelUtil';
 
 

@@ -13,6 +13,8 @@ import diagramXML from '../resources/initialDiagram.bpmn';
 
 var container = $('#js-drop-zone');
 
+var saveDiagramFunctionCall;
+
 var bpmnModeler = new BpmnModeler({
   container: '#js-canvas',
   propertiesPanel: {
@@ -25,44 +27,47 @@ var bpmnModeler = new BpmnModeler({
   moddleExtensions: {
     template: templateModdleDescriptor,
   }
+
 });
+
+function setDiagramXML() {
+  placeholderForDiagram = document.getElementById('editForm:workflowTabView:xmlDiagram');
+  if (placeholderForDiagram) {
+    var loadDiagramXML = placeholderForDiagram.value;
+    openDiagram(loadDiagramXML);
+  } else {
+    alert('diagram is empty!');
+  }
+}
 
 function createNewDiagram() {
   openDiagram(diagramXML);
 }
 
 function openDiagram(xml) {
-
+  var xmlParam;
+  var svgParam;
   bpmnModeler.importXML(xml, function(err) {
+    err ? (container.removeClass('with-diagram').addClass('with-error'), container.find('.error pre').text(err.message), console.error(err)) : container.removeClass('with-error').addClass('with-diagram');
+  })
+};
 
-    if (err) {
-      container
-        .removeClass('with-diagram')
-        .addClass('with-error');
-
-      container.find('.error pre').text(err.message);
-
-      console.error(err);
-    } else {
-      container
-        .removeClass('with-error')
-        .addClass('with-diagram');
-    }
-
-
+saveDiagramFunctionCall = function saveDiagramAction() {
+  var xmlParam = "";
+  var svgParam = "";
+  bpmnModeler.saveXML({
+    format: !0
+  }, function(err, xml) {
+    err ? alert('diagram xml save failed', err) : xmlParam = xml;
   });
-}
-
-function saveSVG(done) {
-  bpmnModeler.saveSVG(done);
-}
-
-function saveDiagram(done) {
-
-  bpmnModeler.saveXML({ format: true }, function(err, xml) {
-    done(err, xml);
+  bpmnModeler.saveSVG({
+    format: !0
+  }, function(err, svg) {
+    err ? alert('diagram svg save failed', err) : svgParam = svg;
   });
-}
+
+  document.getElementById('editForm:workflowTabView:xmlDiagram').value = xmlParam + "kitodo-diagram-separator" + svgParam;
+};
 
 function registerFileDrop(container, callback) {
 
@@ -97,7 +102,6 @@ function registerFileDrop(container, callback) {
   container.get(0).addEventListener('drop', handleFileSelect, false);
 }
 
-
 ////// file drag / drop ///////////////////////
 
 // check file api availability
@@ -113,11 +117,18 @@ if (!window.FileList || !window.FileReader) {
 
 $(function() {
 
-  $('#js-create-diagram').click(function(e) {
+  $('#editForm\\:workflowTabView\\:js-create-diagram').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
 
     createNewDiagram();
+  });
+
+  $('#editForm\\:workflowTabView\\:btnReadXmlDiagram').click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    setDiagramXML();
   });
 
   var downloadLink = $('#js-download-diagram');
