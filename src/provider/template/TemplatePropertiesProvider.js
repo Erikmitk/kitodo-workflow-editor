@@ -3,7 +3,6 @@ import inherits from 'inherits';
 import PropertiesActivator from 'bpmn-js-properties-panel/lib/PropertiesActivator';
 
 // Require all properties you need from existing providers.
-// In this case all available bpmn relevant properties without camunda extensions.
 import processProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/ProcessProps';
 import eventProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/EventProps';
 import linkProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/LinkProps';
@@ -14,10 +13,7 @@ import conditionalProps from 'bpmn-js-properties-panel/lib/provider/camunda/part
 // Require your custom property entries.
 import scriptTaskProperties from './parts/ScriptTaskProperties';
 import taskProperties from './parts/TaskProperties';
-//import sequenceFlowProperies from './parts/SequenceFlowProperties';
 
-// The general tab contains all bpmn relevant properties.
-// The properties are organized in groups.
 function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
 
     var generalGroup = {
@@ -38,7 +34,6 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
     eventProps(detailsGroup, element, bpmnFactory, elementRegistry, translate);
     conditionalProps(detailsGroup, element, bpmnFactory, translate);
 
-    // Create a group called "Task Properties".
     var taskGroup = {
         id: 'task',
         label: 'Task Properties',
