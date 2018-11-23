@@ -11,63 +11,55 @@ module.exports = function(grunt) {
     return path.join(path.dirname(require.resolve(project)), file);
   }
 
-
   grunt.initConfig({
+
     browserify: {
       options: {
         browserifyOptions: {
-          debug: true
+          debug: false
         },
         transform: [
-          [ 'stringify', {
-            extensions: [ '.bpmn' ]
-          } ],
-          [ 'babelify', {
-            global: true
-          } ]
-        ]
-      },
-      watch: {
-        options: {
-          watch: true
-        },
-        files: {
-          'dist/index.js': [ 'src/**/*.js' ]
-        }
+          [ 'stringify', { extensions: [ '.bpmn' ] } ],
+          [ 'babelify', { global: true } ]
+        ],
+        banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was buildributed with this source code.\n*/\n\n"
       },
       src: {
         files: {
-          'dist/index.js': [ 'src/**/*.js' ]
+          'build/modeler.js': [ 'src/**/*.js', '!src/js/**/*.*' ]
         }
-      }
+      },
     },
 
     copy: {
-      diagram_js: {
-        files: [
-          {
-            src: resolvePath('diagram-js', 'assets/diagram-js.css'),
-            dest: 'dist/css/diagram-js.css'
-          }
-        ]
-      },
-      bpmn_js: {
+      bpmn_assets: {
         files: [
           {
             expand: true,
             cwd: resolvePath('bpmn-js', 'dist/assets'),
-            src: ['**/*.*', '!**/*.js'],
-            dest: 'dist/vendor'
+            src: ['**/*.*', '!**/font/**/*.*', '!**/*.js', '!**/bpmn-codes.css', '!**/bpmn.css'],
+            dest: 'build/vendor'
           }
         ]
       },
-      src: {
+
+      src_assets: {
         files: [
           {
             expand: true,
             cwd: 'src/',
-            src: ['**/*.*', '!**/*.js'],
+            src: ['**/*.*', '!**/*.js', '!**/*.json'],
             dest: 'dist'
+          }
+        ]
+      },
+
+      custom_js: {
+        files: [ {
+          expand: true,
+          cwd: 'src/js/',
+          src: ['modeler_custom.js'],
+          dest: 'dist/js'
           }
         ]
       }
@@ -80,22 +72,43 @@ module.exports = function(grunt) {
           'node_modules'
         ]
       },
-
       styles: {
         files: {
-          'dist/css/src.css': 'styles/src.less'
+          'build/css/src.css': 'styles/src.less'
         }
       }
     },
 
-    watch: {
-      options: {
-        livereload: true
-      },
+    uglify: {
+      modeler: {
+        options: {
+          mangle:false,
+          compress: true,
+          preserveComments: true,
+          yuicompress: true,
+          optimization: 2,
+          banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was buildributed with this source code.\n*/\n\n"
+        },
+        files: {
+          "dist/js/modeler_min.js" : ['build/modeler.js']
+        }
+      }
+    },
 
-      samples: {
+    concat: {
+      css: {
+        src: 'build/**/*.css',
+        dest: 'dist/css/modeler.css',
+        options: {
+          banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was buildributed with this source code.\n*/\n\n"
+      }
+        }
+    },
+
+    watch: {
+      assets: {
         files: [ 'src/**/*.*' ],
-        tasks: [ 'copy:src' ]
+        tasks: [ 'copy:src_assets', 'copy:custom_js' ]
       },
 
       less: {
@@ -104,37 +117,32 @@ module.exports = function(grunt) {
           'node_modules/bpmn-js-properties-panel/styles/**/*.less'
         ],
         tasks: [
-          'less'
+          'less',
+          'concat:css'
         ]
-      }
-    },
-
-    connect: {
-      livereload: {
-        options: {
-          port: 9013,
-          livereload: true,
-          hostname: 'localhost',
-          open: true,
-          base: [
-            'dist'
-          ]
-        }
+      },
+      js: {
+        files : [ 'src/**/*.js'],
+        tasks : ['browserify:src','uglify']
       }
     }
   });
 
-  // tasks
-
-  grunt.registerTask('build', [ 'copy', 'less', 'browserify:src' ]);
+  grunt.registerTask('build', [
+    'copy',
+    'less',
+    'browserify:src',
+    'uglify'
+  ]);
 
   grunt.registerTask('auto-build', [
     'copy',
     'less',
-    'browserify:watch',
-    'connect:livereload',
+    'concat:css',
+    'browserify:src',
+    'uglify',
     'watch'
   ]);
 
-  grunt.registerTask('default', [ 'build' ]);
+  grunt.registerTask('default', [ 'auto-build' ]);
 };
