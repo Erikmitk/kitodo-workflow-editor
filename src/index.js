@@ -29,7 +29,7 @@ var bpmnModeler = new BpmnModeler({
 });
 
 function setDiagramXML() {
-  placeholderForDiagram = document.getElementById('editForm:workflowTabView:xmlDiagram');
+  var placeholderForDiagram = document.getElementById('editForm:workflowTabView:xmlDiagram');
   if (placeholderForDiagram) {
     var loadDiagramXML = placeholderForDiagram.value;
     openDiagram(loadDiagramXML);
