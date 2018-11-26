@@ -30,18 +30,19 @@ export default function (group, element) {
             modelProperty: 'processingStatus'
         }));
 
+        group.entries.push(entryFactory.selectBox({
+            id: 'permittedUserRole',
+            description: '',
+            label: 'Permitted User Role',
+            selectOptions : availableUserRoles,
+            modelProperty: 'permittedUserRole'
+        }));
+
         group.entries.push(entryFactory.checkbox({
             id: 'typeMetadata',
             description: 'Is it task metadata type?',
             label: 'Metadata',
             modelProperty: 'typeMetadata'
-        }));
-
-        group.entries.push(entryFactory.checkbox({
-            id: 'typeImportFileUpload',
-            description: 'Is it import by file upload?',
-            label: 'Import by file upload',
-            modelProperty: 'typeImportFileUpload'
         }));
 
         group.entries.push(entryFactory.checkbox({
@@ -56,13 +57,6 @@ export default function (group, element) {
             description: '',
             label: 'Write images',
             modelProperty: 'typeImagesWrite'
-        }));
-
-        group.entries.push(entryFactory.checkbox({
-            id: 'typeExportRussian',
-            description: 'Is it russian export?',
-            label: 'Russian export',
-            modelProperty: 'typeExportRussian'
         }));
 
         group.entries.push(entryFactory.checkbox({
@@ -98,14 +92,6 @@ export default function (group, element) {
             description: '',
             label: 'Batch task',
             modelProperty: 'batchStep'
-        }));
-
-        group.entries.push(entryFactory.selectBox({
-            id: 'permittedUserRole',
-            description: '',
-            label: 'Permitted User Role',
-            selectOptions : availableUserRoles,
-            modelProperty: 'permittedUserRole'
         }));
     }
 

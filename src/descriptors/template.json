@@ -29,6 +29,11 @@
           "type": "Integer"
         },
         {
+          "name": "permittedUserRole",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
           "name": "typeMetadata",
           "isAttr": true,
           "type": "Boolean"
@@ -67,11 +72,6 @@
           "name": "batchStep",
           "isAttr": true,
           "type": "Boolean"
-        },
-        {
-          "name": "permittedUserRole",
-          "isAttr": true,
-          "type": "Integer"
         }
       ]
     },
