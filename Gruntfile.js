@@ -22,7 +22,7 @@ module.exports = function(grunt) {
           [ 'stringify', { extensions: [ '.bpmn' ] } ],
           [ 'babelify', { global: true } ]
         ],
-        banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was buildributed with this source code.\n*/\n\n\nvar saveDiagramFunctionCall;"
+        banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n\nvar saveDiagramFunctionCall;"
       },
       src: {
         files: {
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
           preserveComments: true,
           yuicompress: true,
           optimization: 2,
-          banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was buildributed with this source code.\n*/\n\n"
+          banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n"
         },
         files: {
           "dist/js/modeler_min.js" : ['build/modeler.js']
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
         src: 'build/**/*.css',
         dest: 'dist/css/modeler.css',
         options: {
-          banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was buildributed with this source code.\n*/\n\n"
+          banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n"
       }
         }
     },
