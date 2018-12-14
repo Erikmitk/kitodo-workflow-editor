@@ -30,14 +30,6 @@ export default function (group, element) {
             modelProperty: 'processingStatus'
         }));
 
-        group.entries.push(entryFactory.selectBox({
-            id: 'permittedUserRole',
-            description: '',
-            label: 'Permitted User Role',
-            selectOptions : availableUserRoles,
-            modelProperty: 'permittedUserRole'
-        }));
-
         group.entries.push(entryFactory.checkbox({
             id: 'typeMetadata',
             description: 'Is it task metadata type?',
