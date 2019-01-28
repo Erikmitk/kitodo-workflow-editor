@@ -85,6 +85,14 @@ export default function (group, element) {
             label: 'Batch task',
             modelProperty: 'batchStep'
         }));
+
+        group.entries.push(entryFactory.checkbox({
+            id: 'concurrent',
+            description: '',
+            label: 'Concurrent Task',
+            modelProperty: 'concurrent'
+        }));
+
     }
 
 }

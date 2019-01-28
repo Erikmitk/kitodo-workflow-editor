@@ -72,6 +72,11 @@
           "name": "batchStep",
           "isAttr": true,
           "type": "Boolean"
+        },
+        {
+          "name": "concurrent",
+          "isAttr": true,
+          "type": "Boolean"
         }
       ]
     },
