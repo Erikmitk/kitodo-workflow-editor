@@ -31,18 +31,25 @@ export default function (group, element) {
 				if (assignedRoles == undefined) {
 					// There are no roles selected so nothing is checked
 					res["permittedUserRole_" + index] = false;
+
 					return res;
 				}
 
-				var searchIndex = $.inArray(value['value'], assignedRoles.split(','));
+				var rolesArray = assignedRoles.split(',');
+				var isSet = rolesArray.indexOf(value['value']);
 
-				res["permittedUserRole_" + index] = searchIndex >= 0;
+				if (isSet !== -1) {
+					res["permittedUserRole_" + index] = true;
+				} else {
+					res["permittedUserRole_" + index] = false;
+				}
 
 				return res;
 			};
 
 			permissionCheckbox.set = function(element, values) {
 				var res = {};
+
 				var assignedRoles = getBusinessObject(element).get("permittedUserRole");
 				var rolesArray;
 
@@ -53,15 +60,24 @@ export default function (group, element) {
 					rolesArray = assignedRoles.split(',');
 				}
 
-				var checkboxValue = !!values["permittedUserRole_" + index];
+				var checkboxValue = values["permittedUserRole_" + index ];
 
-				if (checkboxValue) {
-					rolesArray.push(value['value']);
-				} else {
-					rolesArray.splice(value['value']);
+				if (checkboxValue == undefined) {
+					var position = rolesArray.indexOf(value['value']);
+					rolesArray.splice(position, 1);
 				}
 
-				res['permittedUserRole'] = rolesArray.join(',');
+				if (checkboxValue == true) {
+					rolesArray.push(value['value']);
+				}
+
+				var propertyString = rolesArray.join(',');
+
+				if(propertyString.charAt(0) == ",") {
+					propertyString = propertyString.substr(1)
+				}
+
+				res['permittedUserRole'] = propertyString;
 
 				return cmdHelper.updateProperties(element, res);
 			};
