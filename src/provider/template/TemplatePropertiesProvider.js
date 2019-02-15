@@ -14,6 +14,7 @@ import conditionalProps from 'bpmn-js-properties-panel/lib/provider/camunda/part
 import scriptTaskProperties from './parts/ScriptTaskProperties';
 import taskProperties from './parts/TaskProperties';
 import permissionProps from './parts/PermissionProperties';
+import conditionProps from './parts/ConditionProperties';
 
 function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
 
@@ -74,6 +75,21 @@ function createPermissionTabGroups(element, bpmnFactory, elementRegistry, transl
   ];
 }
 
+function createConditionTabGroups(element, bpmnFactory, elementRegistry, translate) {
+
+  var conditionGroup = {
+    id: 'condition',
+    label: 'Condition',
+    entries: []
+  };
+
+  conditionProps(conditionGroup, element);
+
+  return [
+    conditionGroup
+  ];
+}
+
 export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elementRegistry,
                                                    translate) {
 
@@ -87,15 +103,22 @@ export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elemen
             groups: createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate)
         };
 
-         var permissionTab = {
+        var permissionTab = {
             id: 'permissions',
             label: 'Berechtigungen',
             groups: createPermissionTabGroups(element, bpmnFactory, elementRegistry, translate)
         };
 
+        var conditionTab = {
+            id: 'conditions',
+            label: 'Bedingungen',
+            groups: createConditionTabGroups(element, bpmnFactory, elementRegistry, translate)
+        };
+
         return [
             generalTab,
-            permissionTab
+            permissionTab,
+            conditionTab
         ];
     };
 }
