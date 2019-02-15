@@ -18,14 +18,14 @@ export default function (group, element) {
             selectOptions : [
                 {name: 'Script', value: "script"},
                 {name: 'XPath', value: "xpath"}],
-            modelProperty: 'conditionType'
+            modelProperty: 'kitodoConditionType'
         }));
 
         group.entries.push(entryFactory.textField({
             id: 'conditionValue',
             description: '',
             label: 'Value',
-            modelProperty: 'conditionValue'
+            modelProperty: 'kitodoConditionValue'
         }));
     }
 

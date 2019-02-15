@@ -79,12 +79,12 @@
           "type": "Boolean"
         },
         {
-          "name": "conditionType",
+          "name": "kitodoConditionType",
           "isAttr": true,
           "type": "String"
         },
         {
-          "name": "conditonValue",
+          "name": "kitodoConditionValue",
           "isAttr": true,
           "type": "String"
         }
