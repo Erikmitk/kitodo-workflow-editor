@@ -15,6 +15,8 @@ import scriptTaskProperties from './parts/ScriptTaskProperties';
 import taskProperties from './parts/TaskProperties';
 import permissionProps from './parts/PermissionProperties';
 import conditionProps from './parts/ConditionProperties';
+import kitodoNameProps from './parts/KitodoNameProps';
+
 
 function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
 
@@ -23,8 +25,10 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
         label: 'General Properties',
         entries: []
     };
+    
     idProps(generalGroup, element, translate);
-    nameProps(generalGroup, element, translate);
+    kitodoNameProps(generalGroup, element, translate);
+    
     processProps(generalGroup, element, translate);
 
     var detailsGroup = {
@@ -32,6 +36,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
         label: 'Details',
         entries: []
     };
+    
     linkProps(detailsGroup, element, translate);
     eventProps(detailsGroup, element, bpmnFactory, elementRegistry, translate);
     conditionalProps(detailsGroup, element, bpmnFactory, translate);
