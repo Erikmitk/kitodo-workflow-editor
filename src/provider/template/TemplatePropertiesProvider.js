@@ -17,6 +17,8 @@ import permissionProps from './parts/PermissionProperties';
 import conditionProps from './parts/ConditionProperties';
 import kitodoNameProps from './parts/KitodoNameProps';
 
+var is = require('bpmn-js/lib/util/ModelUtil').is;
+
 
 function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
 
@@ -101,12 +103,13 @@ export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elemen
     PropertiesActivator.call(this, eventBus);
 
     this.getTabs = function (element) {
-
+        
         var generalTab = {
-            id: 'general',
-            label: 'Properties',
-            groups: createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate)
-        };
+                id: 'general',
+                label: 'Properties',
+                groups: createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate)
+            };
+        
 
         var permissionTab = {
             id: 'permissions',
@@ -119,12 +122,14 @@ export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elemen
             label: 'Bedingungen',
             groups: createConditionTabGroups(element, bpmnFactory, elementRegistry, translate)
         };
-
-        return [
-            generalTab,
-            permissionTab,
-            conditionTab
-        ];
+        
+        
+            return [
+                generalTab,
+                permissionTab,
+                conditionTab
+            ];
+        
     };
 }
 
