@@ -22,15 +22,21 @@ var is = require('bpmn-js/lib/util/ModelUtil').is;
 
 function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
 
+    var title = "";
+
+    if(is(element, 'bpmn:Task') || is(element, 'bpmn:StartEvent') || is(element, 'bpmn:EndEvent')) {
+        title = 'General Properties';
+    }
+
     var generalGroup = {
         id: 'general',
-        label: 'General Properties',
+        label: title,
         entries: []
     };
-    
+
     idProps(generalGroup, element, translate);
     kitodoNameProps(generalGroup, element, translate);
-    
+
     processProps(generalGroup, element, translate);
 
     var detailsGroup = {
@@ -38,7 +44,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
         label: 'Details',
         entries: []
     };
-    
+
     linkProps(detailsGroup, element, translate);
     eventProps(detailsGroup, element, bpmnFactory, elementRegistry, translate);
     conditionalProps(detailsGroup, element, bpmnFactory, translate);
@@ -103,13 +109,13 @@ export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elemen
     PropertiesActivator.call(this, eventBus);
 
     this.getTabs = function (element) {
-        
+
         var generalTab = {
                 id: 'general',
                 label: 'Properties',
                 groups: createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate)
             };
-        
+
 
         var permissionTab = {
             id: 'permissions',
@@ -122,14 +128,14 @@ export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elemen
             label: 'Bedingungen',
             groups: createConditionTabGroups(element, bpmnFactory, elementRegistry, translate)
         };
-        
-        
+
+
             return [
                 generalTab,
                 permissionTab,
                 conditionTab
             ];
-        
+
     };
 }
 
