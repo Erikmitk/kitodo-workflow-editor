@@ -25,18 +25,18 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "~1.0.0",
     "grunt-contrib-less": "^2.0.0",
-    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "load-grunt-tasks": "~3.5.0",
     "stringify": "^5.2.0"
   },
   "dependencies": {
     "bpmn-js": "^1.1.1",
-    "bpmn-js-properties-panel": "^0.28.1",
-    "camunda-bpmn-moddle": "^3.0.0",
+    "bpmn-js-properties-panel": "^0.28.2",
+    "camunda-bpmn-moddle": "^3.2.0",
     "diagram-js": "^1.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "lodash": "^4.17.11",
-    "min-dash": "^3.0.0"
+    "min-dash": "^3.4.0"
   }
 }
