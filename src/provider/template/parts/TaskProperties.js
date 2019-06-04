@@ -24,8 +24,6 @@ export default function (group, element) {
             label: 'Processing status',
             selectOptions : [
                 {name: 'Locked', value: 0},
-                {name: 'Open', value: 1},
-                {name: 'In processing', value: 2},
                 {name: 'Closed', value: 3}],
             modelProperty: 'processingStatus'
         }));
