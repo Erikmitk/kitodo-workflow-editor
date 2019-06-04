@@ -11,11 +11,11 @@ export default function (group, element) {
     // element is a task.
 
     if (is(element, 'bpmn:Task')) {
-        group.entries.push(entryFactory.textField({
-            id: 'priority',
+        group.entries.push(entryFactory.checkbox({
+            id: 'correction',
             description: '',
-            label: 'Priority',
-            modelProperty: 'priority'
+            label: 'Correction',
+            modelProperty: 'correction'
         }));
 
         group.entries.push(entryFactory.selectBox({

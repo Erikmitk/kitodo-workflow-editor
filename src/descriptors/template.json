@@ -14,9 +14,9 @@
       ],
       "properties": [
         {
-          "name": "priority",
+          "name": "correction",
           "isAttr": true,
-          "type": "Integer"
+          "type": "Boolean"
         },
         {
           "name": "editType",
