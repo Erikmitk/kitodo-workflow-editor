@@ -67,49 +67,20 @@ saveDiagramFunctionCall = function saveDiagramAction() {
   document.getElementById('editForm:workflowTabView:xmlDiagram').value = xmlParam + "kitodo-diagram-separator" + svgParam;
 };
 
-function registerFileDrop(container, callback) {
 
-  function handleFileSelect(e) {
-    e.stopPropagation();
-    e.preventDefault();
 
-    var files = e.dataTransfer.files;
 
-    var file = files[0];
 
-    var reader = new FileReader();
 
-    reader.onload = function(e) {
 
-      var xml = e.target.result;
 
-      callback(xml);
-    };
 
-    reader.readAsText(file);
+
+
   }
 
-  function handleDragOver(e) {
-    e.stopPropagation();
-    e.preventDefault();
 
-    e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-  }
 
-  container.get(0).addEventListener('dragover', handleDragOver, false);
-  container.get(0).addEventListener('drop', handleFileSelect, false);
-}
-
-////// file drag / drop ///////////////////////
-
-// check file api availability
-if (!window.FileList || !window.FileReader) {
-  window.alert(
-    'Looks like you use an older browser that does not support drag and drop. ' +
-    'Try using Chrome, Firefox or the Internet Explorer > 10.');
-} else {
-  registerFileDrop(container, openDiagram);
-}
 
 // bootstrap diagram functions
 
