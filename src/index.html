@@ -10,7 +10,6 @@
 </head>
 <body>
   <div class="content" id="js-drop-zone">
-
       <div class="message intro">
         <div class="note">
           Drop BPMN diagram from your desktop or <a href="#" id="editForm:workflowTabView:js-create-diagram" name="editForm:workflowTabView:js-create-diagram">create a new diagram</a> to get started.
@@ -43,6 +42,25 @@
       <option value="10">UserManagement</option>
       <option value="11">ProcessManagement</option>
     </select>
+  </div>
+
+  <div class="modeler-zoom-controls">
+    <ul>
+      <li>
+        <button title="Zoom Plus" jsaction="click:modeler.zoomIn">
+          Zoom +
+        </button>
+         <button title="Zoom Minus" jsaction="click:modeler.zoomOut">
+          Zoom -
+        </button>
+        <button title="Zoom Reset" jsaction="click:modeler.zoomReset">
+          Reset Ansicht
+        </button>
+         <button title="Toggle Fullscreen" jsaction="click:modeler.toggleFullscreen">
+          Vollbild
+        </button>
+      </li>
+    </ul>
   </div>
 
   <script src="js/modeler_custom.js"></script>
