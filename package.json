@@ -34,7 +34,7 @@
     "bpmn-js": "^3.4.1",
     "bpmn-js-properties-panel": "^0.30.0",
     "camunda-bpmn-moddle": "^3.2.0",
-    "diagram-js": "^3.3.0",
+    "diagram-js": "^3.3.1",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
     "min-dash": "^3.5.0"
