@@ -70,7 +70,7 @@ saveDiagramFunctionCall = function saveDiagramAction() {
 var modelerActions = {
 
   'modeler.toggleFullscreen': function() {
-    var elem = document.querySelector('html');
+    var elem = document.querySelector('#js-drop-zone');
     toggleFullScreen(elem);
   },
   'modeler.zoomReset': function() {
