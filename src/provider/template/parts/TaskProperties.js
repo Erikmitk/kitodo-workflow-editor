@@ -36,6 +36,13 @@ export default function (group, element) {
         }));
 
         group.entries.push(entryFactory.checkbox({
+            id: 'separateStructure',
+            description: '',
+            label: 'Erweiterter Strukturbaum',
+            modelProperty: 'separateStructure'
+        }));
+
+        group.entries.push(entryFactory.checkbox({
             id: 'typeImagesRead',
             description: '',
             label: 'Read images',
