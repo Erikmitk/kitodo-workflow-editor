@@ -57,6 +57,22 @@ export default function (group, element) {
         }));
 
         group.entries.push(entryFactory.checkbox({
+            id: 'typeGenerateImages',
+            description: '',
+            label: 'Generate Images',
+            modelProperty: 'typeGenerateImages'
+        }));
+
+
+        group.entries.push(entryFactory.checkbox({
+            id: 'typeValidateImages',
+            description: '',
+            label: 'Validate Images',
+            modelProperty: 'typeValidateImages'
+        }));
+
+
+        group.entries.push(entryFactory.checkbox({
             id: 'typeExportDMS',
             description: '',
             label: 'Export DMS',

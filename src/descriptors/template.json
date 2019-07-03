@@ -58,6 +58,16 @@
           "type": "Boolean"
         },
         {
+          "name": "typeGenerateImages",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "typeValidateImages",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
           "name": "typeExportDMS",
           "isAttr": true,
           "type": "Boolean"
