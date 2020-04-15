@@ -13,107 +13,106 @@ export default function (group, element) {
     if (is(element, 'bpmn:Task')) {
         group.entries.push(entryFactory.checkbox({
             id: 'correction',
-            description: '',
-            label: 'Correction',
+            description: getLocalizedStringForKey('correctionDescription'),
+            label: getLocalizedStringForKey('correction'),
             modelProperty: 'correction'
         }));
 
         group.entries.push(entryFactory.selectBox({
             id: 'processingStatus',
-            description: '',
-            label: 'Processing status',
+            description: getLocalizedStringForKey('processingstatusDescription'),
+            label: getLocalizedStringForKey('processingstatus'),
             selectOptions : [
-                {name: 'Locked', value: 0},
-                {name: 'Closed', value: 3}],
+                {name: getLocalizedStringForKey('locked'), value: 0},
+                {name: getLocalizedStringForKey('closed'), value: 3}],
             modelProperty: 'processingStatus'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeMetadata',
-            description: 'Is it task metadata type?',
-            label: 'Metadata',
+            description: getLocalizedStringForKey('metadataDescription'),
+            label: getLocalizedStringForKey('metadata'),
             modelProperty: 'typeMetadata'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'separateStructure',
-            description: '',
-            label: 'Erweiterter Strukturbaum',
+            description: getLocalizedStringForKey('separateStructureDescription'),
+            label: getLocalizedStringForKey('separateStructure'),
             modelProperty: 'separateStructure'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeImagesRead',
-            description: '',
-            label: 'Read images',
+            description: getLocalizedStringForKey('typeImagesReadDescription'),
+            label: getLocalizedStringForKey('typeImagesRead'),
             modelProperty: 'typeImagesRead'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeImagesWrite',
-            description: '',
-            label: 'Write images',
+            description: getLocalizedStringForKey('typeImagesWriteDescription'),
+            label: getLocalizedStringForKey('typeImagesWrite'),
             modelProperty: 'typeImagesWrite'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeGenerateImages',
-            description: '',
-            label: 'Generate Images',
+            description: getLocalizedStringForKey('typeGenerateImagesDescription'),
+            label: getLocalizedStringForKey('typeGenerateImages'),
             modelProperty: 'typeGenerateImages'
         }));
 
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeValidateImages',
-            description: '',
-            label: 'Validate Images',
+            description: getLocalizedStringForKey('typeValidateImageDescription'),
+            label: getLocalizedStringForKey('typeValidateImages'),
             modelProperty: 'typeValidateImages'
         }));
 
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeExportDMS',
-            description: '',
-            label: 'Export DMS',
+            description: getLocalizedStringForKey('typeExportDMSDescription'),
+            label: getLocalizedStringForKey('typeExportDMS'),
             modelProperty: 'typeExportDMS'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeCloseVerify',
-            description: '',
-            label: 'Validate on exit',
+            description: getLocalizedStringForKey('typeCloseVerifyDescription'),
+            label: getLocalizedStringForKey('typeCloseVerify'),
             modelProperty: 'typeCloseVerify'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeAcceptClose',
-            description: '',
-            label: 'Finalise task after accepting',
+            description: getLocalizedStringForKey('typeAcceptClose'),
+            label: getLocalizedStringForKey('typeAcceptClose'),
             modelProperty: 'typeAcceptClose'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeAutomatic',
-            description: 'Is it task automatic type?',
-            label: 'Automatic task',
+            description: getLocalizedStringForKey('typeAutomaticDescription'),
+            label: getLocalizedStringForKey('typeAutomatic'),
             modelProperty: 'typeAutomatic'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'batchStep',
-            description: '',
-            label: 'Batch task',
+            description: getLocalizedStringForKey('batchStepDescription'),
+            label: getLocalizedStringForKey('batchStep'),
             modelProperty: 'batchStep'
         }));
 
         group.entries.push(entryFactory.checkbox({
             id: 'concurrent',
-            description: '',
-            label: 'Concurrent Task',
+            description: getLocalizedStringForKey('concurrentDescription'),
+            label: getLocalizedStringForKey('concurrent'),
             modelProperty: 'concurrent'
         }));
 
     }
-
 }

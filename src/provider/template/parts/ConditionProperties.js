@@ -13,18 +13,18 @@ export default function (group, element) {
     if (is(element, 'bpmn:Task')) {
         group.entries.push(entryFactory.selectBox({
             id: 'conditionType',
-            description: '',
-            label: 'Type',
+            description:  getLocalizedStringForKey('kitodoConditionTypeDescription'),
+            label: getLocalizedStringForKey('kitodoConditionType'),
             selectOptions : [
-                {name: 'Script', value: "script"},
-                {name: 'XPath', value: "xpath"}],
+                {name: getLocalizedStringForKey('kitodoConditionTypeScript'), value: "script"},
+                {name: getLocalizedStringForKey('kitodoConditionTypeXPath'), value: "xpath"}],
             modelProperty: 'kitodoConditionType'
         }));
 
         group.entries.push(entryFactory.textField({
             id: 'conditionValue',
-            description: '',
-            label: 'Value',
+            description: getLocalizedStringForKey('kitodoConditionValueDescription'),
+            label: getLocalizedStringForKey('kitodoConditionValue'),
             modelProperty: 'kitodoConditionValue'
         }));
     }
