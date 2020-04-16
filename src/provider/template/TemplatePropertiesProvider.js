@@ -25,7 +25,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
     var title = "";
 
     if(is(element, 'bpmn:Task') || is(element, 'bpmn:StartEvent') || is(element, 'bpmn:EndEvent')) {
-        title = 'General Properties';
+        title = getLocalizedStringForKey('generalGroupLabel');
     }
 
     var generalGroup = {
@@ -41,7 +41,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
 
     var detailsGroup = {
         id: 'details',
-        label: 'Details',
+        label: getLocalizedStringForKey('detailsGroupLabel'),
         entries: []
     };
 
@@ -51,7 +51,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
 
     var taskGroup = {
         id: 'task',
-        label: 'Task Properties',
+        label: getLocalizedStringForKey('taskGroupLabel'),
         entries: []
     };
 
@@ -59,7 +59,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
 
     var scriptTaskGroup = {
         id: 'scriptTask',
-        label: 'Script Properties',
+        label: getLocalizedStringForKey('scriptGroupLabel'),
         entries: []
     };
 
@@ -67,7 +67,6 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
 
     return [
         generalGroup,
-        detailsGroup,
         taskGroup,
         scriptTaskGroup
     ];
@@ -77,7 +76,7 @@ function createPermissionTabGroups(element, bpmnFactory, elementRegistry, transl
 
   var permissionGroup = {
     id: 'permission',
-    label: 'Permissions',
+    label: getLocalizedStringForKey('conditionLabel'),
     entries: []
   };
 
@@ -92,7 +91,7 @@ function createConditionTabGroups(element, bpmnFactory, elementRegistry, transla
 
   var conditionGroup = {
     id: 'condition',
-    label: 'Condition',
+    label: getLocalizedStringForKey('conditionLabel'),
     entries: []
   };
 
@@ -112,20 +111,20 @@ export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elemen
 
         var generalTab = {
                 id: 'general',
-                label: 'Properties',
+                label: getLocalizedStringForKey('propertiesLabel'),
                 groups: createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate)
             };
 
 
         var permissionTab = {
             id: 'permissions',
-            label: 'Berechtigungen',
+            label: getLocalizedStringForKey('permissionsLabel'),
             groups: createPermissionTabGroups(element, bpmnFactory, elementRegistry, translate)
         };
 
         var conditionTab = {
             id: 'conditions',
-            label: 'Bedingungen',
+            label: getLocalizedStringForKey('conditionLabel'),
             groups: createConditionTabGroups(element, bpmnFactory, elementRegistry, translate)
         };
 

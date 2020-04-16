@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       },
       src: {
         files: {
-          'build/modeler.js': [ 'src/**/*.js', '!src/js/**/*.*' ]
+          'build/modeler.js': [ 'src/**/*.js', '!src/js/**/*.*', '!src/language/**/*.*' ]
         }
       },
     },
@@ -39,6 +39,17 @@ module.exports = function(grunt) {
             cwd: resolvePath('bpmn-js', 'dist/assets'),
             src: ['**/*.*', '!**/font/**/*.*', '!**/*.js', '!**/bpmn-codes.css', '!**/bpmn.css'],
             dest: 'build/vendor'
+          }
+        ]
+      },
+      
+      localization: {
+        files: [ 
+          {
+          expand: true,
+          cwd: 'src/language/',
+          src: ['*.js'],
+          dest: 'build/language'
           }
         ]
       },
@@ -90,7 +101,7 @@ module.exports = function(grunt) {
           banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n"
         },
         files: {
-          "dist/js/modeler_min.js" : ['build/modeler.js']
+          "dist/js/modeler_min.js" : ['build/modeler.js', 'build/language/*.js']
         }
       }
     },
@@ -108,7 +119,7 @@ module.exports = function(grunt) {
     watch: {
       assets: {
         files: [ 'src/**/*.*' ],
-        tasks: [ 'copy:src_assets', 'copy:custom_js' ]
+        tasks: [ 'copy:src_assets', 'copy:custom_js' , 'copy:localization']
       },
 
       less: {

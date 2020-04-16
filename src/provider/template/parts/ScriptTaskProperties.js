@@ -13,15 +13,15 @@ export default function (group, element) {
     if (is(element, 'bpmn:ScriptTask')) {
         group.entries.push(entryFactory.textField({
             id: 'scriptName',
-            description: 'Insert script name',
-            label: 'Script name',
+            description: getLocalizedStringForKey('scriptNameDescription'),
+            label: getLocalizedStringForKey('scriptName'),
             modelProperty: 'scriptName'
         }));
 
         group.entries.push(entryFactory.textField({
             id: 'scriptPath',
-            description: 'Insert script path',
-            label: 'Script path',
+            description: getLocalizedStringForKey('scriptPathDescription'),
+            label: getLocalizedStringForKey('scriptPath'),
             modelProperty: 'scriptPath'
         }));
     }
