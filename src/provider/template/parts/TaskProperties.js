@@ -66,7 +66,7 @@ export default function (group, element) {
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeValidateImages',
-            description: getLocalizedStringForKey('typeValidateImageDescription'),
+            description: getLocalizedStringForKey('typeValidateImagesDescription'),
             label: getLocalizedStringForKey('typeValidateImages'),
             modelProperty: 'typeValidateImages'
         }));
