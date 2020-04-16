@@ -21,7 +21,11 @@ $(window).on("load", function () {
 		} else {
 			$('#editForm\\:workflowTabView\\:js-create-diagram')[0].click();
 		}
-				
+		language = $("#editForm\\:workflowTabView\\:editor_language").val();
+		if(!language) {
+			language = "de";
+		}
+		
 		var userRoles = $("#editForm\\:workflowTabView\\:roleId_input").children();
 		
 		userRoles.each(function( index ) {
