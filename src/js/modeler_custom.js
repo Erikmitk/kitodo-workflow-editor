@@ -11,7 +11,7 @@
 
 var availableUserRoles = [];
 var saveDiagramFunctionCall;
-var language = "en_EN";
+var language = "de";
 
 $(window).on("load", function () {
 
@@ -33,19 +33,16 @@ $(window).on("load", function () {
 
 function getLocalizedStringForKey(key) {
 	
-	var availableLanguages = ["en_EN", "de_DE"];
+	var availableLanguages = ["de", "en"];
 	
 	var localizedString;
 		
 	switch (availableLanguages.indexOf(language)) {	
-		// de_DE
-		case 1: {
+		default: {
 				localizedString = de_DE[key];
 			break; 
 		}
-		
-		// en_EN
-		default: {
+		case 1: {
 			localizedString = en_EN[key];
 			break;
 		}
