@@ -88,7 +88,7 @@ export default function (group, element) {
 
         group.entries.push(entryFactory.checkbox({
             id: 'typeAcceptClose',
-            description: getLocalizedStringForKey('typeAcceptClose'),
+            description: getLocalizedStringForKey('typeAcceptCloseDescription'),
             label: getLocalizedStringForKey('typeAcceptClose'),
             modelProperty: 'typeAcceptClose'
         }));
