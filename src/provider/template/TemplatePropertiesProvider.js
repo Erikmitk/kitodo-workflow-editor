@@ -76,7 +76,7 @@ function createPermissionTabGroups(element, bpmnFactory, elementRegistry, transl
 
   var permissionGroup = {
     id: 'permission',
-    label: getLocalizedStringForKey('conditionLabel'),
+    label: '',
     entries: []
   };
 
@@ -91,7 +91,7 @@ function createConditionTabGroups(element, bpmnFactory, elementRegistry, transla
 
   var conditionGroup = {
     id: 'condition',
-    label: getLocalizedStringForKey('conditionLabel'),
+    label: '',
     entries: []
   };
 
