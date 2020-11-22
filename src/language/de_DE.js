@@ -42,6 +42,7 @@ de_DE = {
     "scriptPathDescription": "Pfad zum Skript einfügen",
     "kitodoConditionType": " ",
     "kitodoConditionTypeDescription": " ",
+    "kitodoConditionTypeNone": "Keine",
     "kitodoConditionTypeScript": "Script",
     "kitodoConditionTypeXPath": "XPath",
     "kitodoConditionValue": "Wert",

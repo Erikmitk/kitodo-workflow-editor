@@ -42,6 +42,7 @@ en_EN = {
     "scriptPathDescription": "Insert script path",
     "kitodoConditionType": " ",
     "kitodoConditionTypeDescription": " ",
+    "kitodoConditionTypeNone": "None",
     "kitodoConditionTypeScript": "Script",
     "kitodoConditionTypeXPath": "XPath",
     "kitodoConditionValue": "Value",

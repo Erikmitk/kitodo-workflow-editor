@@ -16,6 +16,7 @@ export default function (group, element) {
             description:  getLocalizedStringForKey('kitodoConditionTypeDescription'),
             label: getLocalizedStringForKey('kitodoConditionType'),
             selectOptions : [
+                {name: getLocalizedStringForKey('kitodoConditionTypeNone'), value: "none"},
                 {name: getLocalizedStringForKey('kitodoConditionTypeScript'), value: "script"},
                 {name: getLocalizedStringForKey('kitodoConditionTypeXPath'), value: "xpath"}],
             modelProperty: 'kitodoConditionType'
