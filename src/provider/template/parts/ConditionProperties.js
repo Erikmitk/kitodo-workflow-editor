@@ -5,13 +5,13 @@ import {
 } from 'bpmn-js/lib/util/ModelUtil';
 
 
-export default function (group, element) {
+export default function (group, element, translate) {
 
     // Only return an entry, if the currently selected
     // element is a task.
 
     if (is(element, 'bpmn:Task')) {
-        group.entries.push(entryFactory.selectBox({
+        group.entries.push(entryFactory.selectBox(translate, {
             id: 'conditionType',
             description:  getLocalizedStringForKey('kitodoConditionTypeDescription'),
             label: getLocalizedStringForKey('kitodoConditionType'),
@@ -22,7 +22,7 @@ export default function (group, element) {
             modelProperty: 'kitodoConditionType'
         }));
 
-        group.entries.push(entryFactory.textField({
+        group.entries.push(entryFactory.textBox(translate, {
             id: 'conditionValue',
             description: getLocalizedStringForKey('kitodoConditionValueDescription'),
             label: getLocalizedStringForKey('kitodoConditionValue'),

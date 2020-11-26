@@ -42,7 +42,8 @@ module.exports = function(group, element, translate) {
         return res;
     }
 
-    var nameEntryTextBox = entryFactory.textBox(options);
+
+    var nameEntryTextBox = entryFactory.textBox(translate, options);
 
     if(!is(element, 'bpmn:Task') && !is(element, 'bpmn:StartEvent') && !is(element, 'bpmn:EndEvent')) {
         nameEntryTextBox.cssClasses = ['hidden'];

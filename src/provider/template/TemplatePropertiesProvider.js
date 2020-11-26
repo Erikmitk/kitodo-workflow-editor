@@ -55,7 +55,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate
         entries: []
     };
 
-    taskProperties(taskGroup, element);
+    taskProperties(taskGroup, element, translate);
 
     var scriptTaskGroup = {
         id: 'scriptTask',
@@ -95,7 +95,7 @@ function createConditionTabGroups(element, bpmnFactory, elementRegistry, transla
     entries: []
   };
 
-  conditionProps(conditionGroup, element);
+  conditionProps(conditionGroup, element, translate);
 
   return [
     conditionGroup

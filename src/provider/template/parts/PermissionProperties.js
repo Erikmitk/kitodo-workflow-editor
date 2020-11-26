@@ -8,7 +8,7 @@ import {
 } from 'bpmn-js/lib/util/ModelUtil';
 
 
-export default function (group, element) {
+export default function (group, element, translate) {
 
     // Only return an entry, if the currently selected
     // element is a task.
@@ -16,7 +16,7 @@ export default function (group, element) {
 	if (is(element, 'bpmn:Task')) {
 
 		$.each(availableUserRoles, function( index, value ) {
-			var permissionCheckbox = entryFactory.checkbox({
+			var permissionCheckbox = entryFactory.checkbox(translate, {
 				id: 'permittedUserRole_' + value['value'],
 				description: '',
 				label: value['name'],
