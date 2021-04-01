@@ -42,27 +42,44 @@ function createNewDiagram() {
   openDiagram(diagramXML);
 }
 
-function openDiagram(xml) {
-  var xmlParam;
-  var svgParam;
-  bpmnModeler.importXML(xml, function(err) {
-    err ? (container.removeClass('with-diagram').addClass('with-error'), container.find('.error pre').text(err.message), console.error(err)) : container.removeClass('with-error').addClass('with-diagram');
-  })
+async function openDiagram(xml) {
+
+  try {
+    const result = await bpmnModeler.importXML(xml);
+    const { warnings } = result;
+    console.log(warnings);
+    container.removeClass('with-error').addClass('with-diagram')
+  } catch (err) {
+    (container.removeClass('with-diagram').addClass('with-error'), container.find('.error pre').text(err.message), console.error(err));
+  }
+
 };
 
-saveDiagramFunctionCall = function saveDiagramAction() {
+saveDiagramFunctionCall = async function saveDiagramAction() {
   var xmlParam = "";
   var svgParam = "";
-  bpmnModeler.saveXML({
-    format: !0
-  }, function(err, xml) {
-    err ? alert('diagram xml save failed', err) : xmlParam = xml;
-  });
-  bpmnModeler.saveSVG({
-    format: !0
-  }, function(err, svg) {
-    err ? alert('diagram svg save failed', err) : svgParam = svg;
-  });
+
+  var options = { format: !0 }
+
+  try {
+    const result = await bpmnModeler.saveXML(options);
+    const { xml } = result;
+    xmlParam = xml;
+    console.log(xml);
+  } catch (err) {
+    console.log(err);
+    alert('diagram xml save failed', err)
+  }
+
+  try {
+    const result = await modeler.saveSVG(options);
+    const { svg } = result;
+    console.log(svg);
+    svgParam = svg;
+  } catch (err) {
+    console.log(err);
+    alert('diagram svg save failed', err)
+  }
 
   document.getElementById('editForm:workflowTabView:xmlDiagram').value = xmlParam + "kitodo-diagram-separator" + svgParam;
 };
