@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         },
         transform: [
           [ 'stringify', { extensions: [ '.bpmn' ] } ],
-          [ 'babelify', { global: true } ]
+          ["babelify", { global: true, "presets": ["@babel/preset-env"] }]
         ],
         banner: "/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n\n"
       },
@@ -42,9 +42,9 @@ module.exports = function(grunt) {
           }
         ]
       },
-      
+
       localization: {
-        files: [ 
+        files: [
           {
           expand: true,
           cwd: 'src/language/',
