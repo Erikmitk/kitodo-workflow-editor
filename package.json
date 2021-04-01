@@ -17,29 +17,26 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babelify": "^8.0.0",
-    "grunt": "~1.0.1",
-    "grunt-browserify": "^5.0.0",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "babelify": "^10.0.0",
+    "grunt": "~1.3.0",
+    "grunt-browserify": "^6.0.0",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-connect": "~3.0.0",
     "grunt-contrib-copy": "~1.0.0",
-    "grunt-contrib-less": "^1.0.1",
-    "grunt-contrib-uglify": "^5.0.0",
-    "grunt-contrib-watch": "~1.0.0",
-    "load-grunt-tasks": "~3.5.0",
-    "stringify": "^3.1.0"
+    "grunt-contrib-less": "^3.0.0",
+    "grunt-contrib-uglify": "^5.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "load-grunt-tasks": "~5.1.0",
+    "stringify": "^5.2.0"
   },
   "dependencies": {
     "bpmn-js": "^8.2.2",
     "bpmn-js-properties-panel": "^0.41.0",
-    "camunda-bpmn-moddle": "^4.5.0",
-    "diagram-js": "^7.2.0",
-    "jquery": "^3.5.1",
-    "min-dash": "^3.5.2"
+    "camunda-bpmn-moddle": "^5.0.0",
+    "diagram-js": "^7.2.3",
+    "jquery": "^3.6.0",
+    "min-dash": "^3.7.0"
   }
 }
