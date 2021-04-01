@@ -4,7 +4,7 @@
   "description": "A customized version of BPMN.io with property panel extension",
   "main": "src/index.js",
   "scripts": {
-    "all": "grunt",
+    "build": "grunt build",
     "dev": "grunt auto-build"
   },
   "repository": {
