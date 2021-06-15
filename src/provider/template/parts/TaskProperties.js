@@ -36,13 +36,6 @@ export default function (group, element, translate) {
         }));
 
         group.entries.push(entryFactory.checkbox(translate, {
-            id: 'separateStructure',
-            description: getLocalizedStringForKey('separateStructureDescription'),
-            label: getLocalizedStringForKey('separateStructure'),
-            modelProperty: 'separateStructure'
-        }));
-
-        group.entries.push(entryFactory.checkbox(translate, {
             id: 'typeImagesRead',
             description: getLocalizedStringForKey('typeImagesReadDescription'),
             label: getLocalizedStringForKey('typeImagesRead'),

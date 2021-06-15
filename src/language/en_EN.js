@@ -14,8 +14,6 @@ en_EN = {
     "closed": "Closed",
     "metadata": "Metadata",
     "metadataDescription": "Is it task metadata type?",
-    "separateStructure": "Extended Structure Tree",
-    "separateStructureDescription": " ",
     "typeImagesRead": "Read images",
     "typeImagesReadDescription": " ",
     "typeImagesWrite": "Write Images",

@@ -14,8 +14,6 @@ de_DE = {
     "closed": "Abgeschlossen",
     "metadata": "Metadaten",
     "metadataDescription": "Metadaten in der Aufgabe bearbeiten?",
-    "separateStructure": "Erweiterter Strukturbaum",
-    "separateStructureDescription": " ",
     "typeImagesRead": "Bilder lesen",
     "typeImagesReadDescription": " ",
     "typeImagesWrite": "Bilder schreiben",
