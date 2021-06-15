@@ -37,10 +37,6 @@
           "name": "typeMetadata",
           "isAttr": true,
           "type": "Boolean"
-        },{
-          "name": "separateStructure",
-          "isAttr": true,
-          "type": "Boolean"
         },
         {
           "name": "typeAutomatic",
