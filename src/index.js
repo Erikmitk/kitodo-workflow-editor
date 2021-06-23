@@ -72,7 +72,7 @@ saveDiagramFunctionCall = async function saveDiagramAction() {
   }
 
   try {
-    const result = await modeler.saveSVG(options);
+    const result = await bpmnModeler.saveSVG(options);
     const { svg } = result;
     console.log(svg);
     svgParam = svg;
