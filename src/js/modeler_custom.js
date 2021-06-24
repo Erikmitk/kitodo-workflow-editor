@@ -10,7 +10,6 @@
  */
 
 var availableUserRoles = [];
-var saveDiagramFunctionCall;
 var language = "de";
 
 $(window).on("load", function () {

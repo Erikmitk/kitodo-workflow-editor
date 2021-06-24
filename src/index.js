@@ -55,34 +55,26 @@ async function openDiagram(xml) {
 
 };
 
-saveDiagramFunctionCall = async function saveDiagramAction() {
-  var xmlParam = "";
-  var svgParam = "";
+var saveDiagram = async function() {
 
-  var options = { format: !0 }
+  var options = { format: !0 };
 
   try {
-    const result = await bpmnModeler.saveXML(options);
-    const { xml } = result;
-    xmlParam = xml;
-    console.log(xml);
+    const modelerXML = await bpmnModeler.saveXML(options);
+    console.log(modelerXML.xml);
+
+    const modelerSVG = await bpmnModeler.saveSVG(options);
+    console.log(modelerSVG.svg);
+
+    document.getElementById('editForm:workflowTabView:xmlDiagram').value = modelerXML.xml + "kitodo-diagram-separator" + modelerSVG.svg;
+
   } catch (err) {
     console.log(err);
-    alert('diagram xml save failed', err)
+    alert('Diagram update failed', err)
   }
-
-  try {
-    const result = await bpmnModeler.saveSVG(options);
-    const { svg } = result;
-    console.log(svg);
-    svgParam = svg;
-  } catch (err) {
-    console.log(err);
-    alert('diagram svg save failed', err)
-  }
-
-  document.getElementById('editForm:workflowTabView:xmlDiagram').value = xmlParam + "kitodo-diagram-separator" + svgParam;
 };
+
+bpmnModeler.on('commandStack.changed', saveDiagram);
 
 var modelerActions = {
 
