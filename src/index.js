@@ -61,10 +61,12 @@ var saveDiagram = async function() {
 
   try {
     const modelerXML = await bpmnModeler.saveXML(options);
-    console.log(modelerXML.xml);
+    // Uncomment for debugging purposes
+    //console.log(modelerXML.xml);
 
     const modelerSVG = await bpmnModeler.saveSVG(options);
-    console.log(modelerSVG.svg);
+    // Uncomment for debugging purposes
+    // console.log(modelerSVG.svg);
 
     document.getElementById('editForm:workflowTabView:xmlDiagram').value = modelerXML.xml + "kitodo-diagram-separator" + modelerSVG.svg;
 
