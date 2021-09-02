@@ -15,7 +15,7 @@ export default function (group, element, translate) {
             id: 'correction',
             description: getLocalizedStringForKey('correctionDescription'),
             label: getLocalizedStringForKey('correction'),
-            modelProperty: 'correction'
+            modelProperty: 'repeatOnCorrection'
         }));
 
         group.entries.push(entryFactory.selectBox(translate, {
