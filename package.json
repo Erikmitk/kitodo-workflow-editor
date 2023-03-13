@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "bpmn-js": "^11.5.0",
-    "bpmn-js-properties-panel": "^1.18.0",
+    "bpmn-js-properties-panel": "^1.19.1",
     "camunda-bpmn-moddle": "^7.0.1",
     "diagram-js": "^11.9.1",
     "jquery": "^3.6.4",
