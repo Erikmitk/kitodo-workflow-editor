@@ -1,6 +1,6 @@
 {
   "name": "bpmn-editor-customization-kitodo-production",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "description": "A customized version of BPMN.io with property panel extension",
   "main": "src/index.js",
   "scripts": {
@@ -21,15 +21,14 @@
     "@babel/plugin-transform-runtime": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
     "babelify": "^10.0.0",
-    "grunt": "~1.6.1",
+    "grunt": "^1.6.1",
     "grunt-browserify": "^6.0.0",
     "grunt-contrib-concat": "^2.1.0",
-    "grunt-contrib-connect": "~3.0.0",
-    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-less": "^3.0.0",
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
-    "load-grunt-tasks": "~5.1.0",
+    "load-grunt-tasks": "^5.1.0",
     "stringify": "^5.2.0"
   },
   "dependencies": {
