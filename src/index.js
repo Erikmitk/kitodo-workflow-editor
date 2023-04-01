@@ -1,9 +1,14 @@
 import $ from 'jquery';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 
-import propertiesPanelModule from 'bpmn-js-properties-panel';
-import propertiesProviderModule from './provider/template';
-import templateModdleDescriptor from './descriptors/template';
+import {
+  BpmnPropertiesPanelModule,
+  BpmnPropertiesProviderModule,
+  BpmnTemplateModdleDescriptor,
+
+  // use Camunda Platform properties provider
+  CamundaPlatformPropertiesProviderModule
+} from 'bpmn-js-properties-panel';
 
 import {
   debounce

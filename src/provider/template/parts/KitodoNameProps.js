@@ -1,12 +1,8 @@
-'use strict';
+import { entryFactory } from 'bpmn-js-properties-panel';
+import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
+import { is } from 'bpmn-js/lib/util/ModelUtil';
+import { cmdHelper } from 'bpmn-js-properties-panel';
 
-import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
-
-var is = require('bpmn-js/lib/util/ModelUtil').is,
-    getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject,
-    cmdHelper = require('bpmn-js-properties-panel/lib/helper/CmdHelper'),
-    getShape = require('diagram-js/lib/core/ElementRegistry').get,
-    eventBus = require('diagram-js/lib/core/EventBus');
 
 
 module.exports = function(group, element, translate) {

@@ -1,12 +1,7 @@
-import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory';
-
-var getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject,
-	cmdHelper = require('bpmn-js-properties-panel/lib/helper/CmdHelper');
-
-import {
-    is
-} from 'bpmn-js/lib/util/ModelUtil';
-
+import { entryFactory } from 'bpmn-js-properties-panel';
+import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
+import { is } from 'bpmn-js/lib/util/ModelUtil';
+import { cmdHelper } from 'bpmn-js-properties-panel';
 
 export default function (group, element, translate) {
 

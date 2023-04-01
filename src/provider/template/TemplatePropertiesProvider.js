@@ -1,23 +1,21 @@
 import inherits from 'inherits';
 
-import PropertiesActivator from 'bpmn-js-properties-panel/lib/PropertiesActivator';
-
 // Require all properties you need from existing providers.
-import processProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/ProcessProps';
-import eventProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/EventProps';
-import linkProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/LinkProps';
-import idProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/IdProps';
-import nameProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/NameProps';
-import conditionalProps from 'bpmn-js-properties-panel/lib/provider/camunda/parts/ConditionalProps';
+import { processProps } from 'bpmn-js-properties-panel';
+import { eventProps } from 'bpmn-js-properties-panel';
+import { linkProps } from 'bpmn-js-properties-panel';
+import { idProps } from  'bpmn-js-properties-panel';
+import { nameProps } from 'bpmn-js-properties-panel';
+import { conditionalProps } from 'bpmn-js-properties-panel';
 
 // Require your custom property entries.
-import scriptTaskProperties from './parts/ScriptTaskProperties';
-import taskProperties from './parts/TaskProperties';
-import permissionProps from './parts/PermissionProperties';
-import conditionProps from './parts/ConditionProperties';
-import kitodoNameProps from './parts/KitodoNameProps';
+import { scriptTaskProperties }  from './parts/ScriptTaskProperties';
+import { taskProperties } from './parts/TaskProperties';
+import { permissionProps } from './parts/PermissionProperties';
+import { conditionProps } from './parts/ConditionProperties';
+import { kitodoNameProps } from './parts/KitodoNameProps';
 
-var is = require('bpmn-js/lib/util/ModelUtil').is;
+import { is } from 'bpmn-js/lib/util/ModelUtil';
 
 
 function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
