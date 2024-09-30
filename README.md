@@ -4,14 +4,14 @@ This project provides a custom build of the bpmn.io editor with properties panel
 
 ## How to build
 
-This project comes with a [Grunt](https://gruntjs.com/) setup with all the neccessary [NPM packages](https://www.npmjs.com/) to build it. You can simply get it running by installing the local needs of NPM with `npm install` on your command line from the root directory. After that, just type `grunt` to start the build process. Additonally, grunt will watch the directories for changes and generates a new build on the fly if anything changes.
+This project comes with a [Grunt](https://gruntjs.com/) setup with all the necessary [NPM packages](https://www.npmjs.com/) to build it. You can simply get it running by installing the local needs of NPM with `npm install` on your command line from the root directory. After that, just type `grunt` to start the build process. Additionally, grunt will watch the directories for changes and generates a new build on the fly if anything changes.
 
 ## Build Results
 
 When finished you'll find the final build in the `dist` directory.
 
 - `js/modeler_min.js` — the minimized version of the editor build incl. property panel extension.
-- `js/modeler_custom.js` — a JS file with additonal Javascript that we need outside of the editor itself
+- `js/modeler_custom.js` — a JS file with additional Javascript that we need outside of the editor itself
 - `css/modeler.css` — a minified file with all needed CSS rules
 - `index.html` — a simple example page where you can test the editor; it contains static information to test the functionality
 
@@ -30,4 +30,4 @@ check_run() {
 check_run package.json "npm install"
 ```
 
-This hook will check for changes in the `package.json` and will run `npm install` to update the installed dependencies accordingly. Withhout this hook you have to do this manually after changes to package.json have been made to stay up-to-date.
+This hook will check for changes in the `package.json` and will run `npm install` to update the installed dependencies accordingly. Without this hook you have to do this manually after changes to package.json have been made to stay up-to-date.
