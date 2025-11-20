@@ -49,7 +49,6 @@ export default function (group, element, translate) {
 				var rolesArray;
 
 				if (assignedRoles == undefined) {
-					assignedRoles = "";
 					rolesArray = [];
 				} else {
 					rolesArray = assignedRoles.split(',');
@@ -69,7 +68,7 @@ export default function (group, element, translate) {
 				var propertyString = rolesArray.join(',');
 
 				if(propertyString.charAt(0) == ",") {
-					propertyString = propertyString.substr(1)
+					propertyString = propertyString.substr(1);
 				}
 
 				res['permittedUserRole'] = propertyString;
@@ -81,12 +80,3 @@ export default function (group, element, translate) {
 		});
 	}
 }
-
-
-
-
-
-
-
-
-
