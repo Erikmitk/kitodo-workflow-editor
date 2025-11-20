@@ -1,137 +1,83 @@
 import inherits from 'inherits';
 
-// Require all properties you need from existing providers.
-import { processProps } from 'bpmn-js-properties-panel';
-import { eventProps } from 'bpmn-js-properties-panel';
-import { linkProps } from 'bpmn-js-properties-panel';
-import { idProps } from  'bpmn-js-properties-panel';
-import { conditionalProps } from 'bpmn-js-properties-panel';
-
-// Require your custom property entries.
-import scriptTaskProperties  from './parts/ScriptTaskProperties';
+import scriptTaskProperties from './parts/ScriptTaskProperties';
 import taskProperties from './parts/TaskProperties';
 import permissionProps from './parts/PermissionProperties';
 import conditionProps from './parts/ConditionProperties';
 import kitodoNameProps from './parts/KitodoNameProps';
 
-import { is } from 'bpmn-js/lib/util/ModelUtil';
-
-
-function createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate) {
-
-    var title = "";
-
-    if(is(element, 'bpmn:Task') || is(element, 'bpmn:StartEvent') || is(element, 'bpmn:EndEvent')) {
-        title = getLocalizedStringForKey('generalGroupLabel');
-    }
-
-    var generalGroup = {
-        id: 'general',
-        label: title,
-        entries: []
-    };
-
-    idProps(generalGroup, element, translate);
-    kitodoNameProps(generalGroup, element, translate);
-
-    processProps(generalGroup, element, translate);
-
-    var detailsGroup = {
-        id: 'details',
-        label: getLocalizedStringForKey('detailsGroupLabel'),
-        entries: []
-    };
-
-    linkProps(detailsGroup, element, translate);
-    eventProps(detailsGroup, element, bpmnFactory, elementRegistry, translate);
-    conditionalProps(detailsGroup, element, bpmnFactory, translate);
-
-    var taskGroup = {
-        id: 'task',
-        label: getLocalizedStringForKey('taskGroupLabel'),
-        entries: []
-    };
-
-    taskProperties(taskGroup, element, translate);
-
-    var scriptTaskGroup = {
-        id: 'scriptTask',
-        label: getLocalizedStringForKey('scriptGroupLabel'),
-        entries: []
-    };
-
-    scriptTaskProperties(scriptTaskGroup, element);
-
-    return [
-        generalGroup,
-        taskGroup,
-        scriptTaskGroup
-    ];
-}
-
-function createPermissionTabGroups(element, bpmnFactory, elementRegistry, translate) {
-
-  var permissionGroup = {
-    id: 'permission',
-    label: '',
-    entries: []
-  };
-
-  permissionProps(permissionGroup, element);
-
-  return [
-    permissionGroup
-  ];
-}
-
-function createConditionTabGroups(element, bpmnFactory, elementRegistry, translate) {
-
-  var conditionGroup = {
-    id: 'condition',
-    label: '',
-    entries: []
-  };
-
-  conditionProps(conditionGroup, element, translate);
-
-  return [
-    conditionGroup
-  ];
-}
-
-export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elementRegistry,
-                                                   translate) {
+export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elementRegistry, translate) {
 
     PropertiesActivator.call(this, eventBus);
 
-    this.getTabs = function (element) {
+    // Create general tab groups
+    function createGeneralTabGroups(element) {
+        const generalGroup = {
+            id: 'general',
+            label: getLocalizedStringForKey('generalGroupLabel'),
+            entries: []
+        };
 
-        var generalTab = {
+        // Add name properties
+        kitodoNameProps(generalGroup, element, translate);
+
+        // Add task-specific properties
+        if (element.type === 'bpmn:Task') {
+            taskProperties(generalGroup, element, translate);
+        }
+
+        const scriptTaskGroup = {
+            id: 'scriptTask',
+            label: getLocalizedStringForKey('scriptGroupLabel'),
+            entries: []
+        };
+
+        if (element.type === 'bpmn:ScriptTask') {
+            scriptTaskProperties(scriptTaskGroup, element);
+        }
+
+        // Only include scriptTaskGroup if it has entries
+        const groups = [generalGroup];
+        if (scriptTaskGroup.entries.length > 0) {
+            groups.push(scriptTaskGroup);
+        }
+
+        return groups;
+    }
+
+    // Create permissions tab
+    function createPermissionTabGroups(element) {
+        const permissionGroup = { id: 'permission', label: getLocalizedStringForKey('permissionsLabel'), entries: [] };
+        permissionProps(permissionGroup, element);
+        return [permissionGroup];
+    }
+
+    // Create conditions tab
+    function createConditionTabGroups(element) {
+        const conditionGroup = { id: 'condition', label: getLocalizedStringForKey('conditionLabel'), entries: [] };
+        conditionProps(conditionGroup, element, translate);
+        return [conditionGroup];
+    }
+
+    // Define tabs
+    this.getTabs = function(element) {
+        return [
+            {
                 id: 'general',
                 label: getLocalizedStringForKey('propertiesLabel'),
-                groups: createGeneralTabGroups(element, bpmnFactory, elementRegistry, translate)
-            };
-
-
-        var permissionTab = {
-            id: 'permissions',
-            label: getLocalizedStringForKey('permissionsLabel'),
-            groups: createPermissionTabGroups(element, bpmnFactory, elementRegistry, translate)
-        };
-
-        var conditionTab = {
-            id: 'conditions',
-            label: getLocalizedStringForKey('conditionLabel'),
-            groups: createConditionTabGroups(element, bpmnFactory, elementRegistry, translate)
-        };
-
-
-            return [
-                generalTab,
-                permissionTab,
-                conditionTab
-            ];
-
+                groups: createGeneralTabGroups(element)
+            },
+            {
+                id: 'permissions',
+                label: getLocalizedStringForKey('permissionsLabel'),
+                groups: createPermissionTabGroups(element)
+            },
+            {
+                id: 'conditions',
+                label: getLocalizedStringForKey('conditionLabel'),
+                groups: createConditionTabGroups(element)
+            }
+        ];
     };
 }
 

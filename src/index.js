@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
-
+import { BpmnPropertiesPanelModule, BpmnPropertiesProviderModule } from 'bpmn-js-properties-panel';
+import templateModdleDescriptor from './moddle/TemplateModdleDescriptor.json';
 import diagramXML from '../resources/initialDiagram.bpmn';
 
 var container = $('#js-drop-zone');
@@ -11,8 +12,8 @@ var bpmnModeler = new BpmnModeler({
     parent: '#js-properties-panel'
   },
   additionalModules: [
-    propertiesPanelModule,
-    propertiesProviderModule
+    BpmnPropertiesPanelModule,
+    BpmnPropertiesProviderModule
   ],
   moddleExtensions: {
     template: templateModdleDescriptor,
@@ -36,14 +37,23 @@ function createNewDiagram() {
 
 async function openDiagram(xml) {
 
-  try {
-    const result = await bpmnModeler.importXML(xml);
-    const { warnings } = result;
-    console.log(warnings);
-    container.removeClass('with-error').addClass('with-diagram')
-  } catch (err) {
-    (container.removeClass('with-diagram').addClass('with-error'), container.find('.error pre').text(err.message), console.error(err));
-  }
+ try {
+
+   await bpmnModeler.importXML(xml);
+
+   container
+     .removeClass('with-error')
+     .addClass('with-diagram');
+ } catch (err) {
+
+   container
+     .removeClass('with-diagram')
+     .addClass('with-error');
+
+   container.find('.error pre').text(err.message);
+
+   console.error(err);
+ }
 
 };
 
