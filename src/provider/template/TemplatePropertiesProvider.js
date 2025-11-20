@@ -9,11 +9,11 @@ import { nameProps } from 'bpmn-js-properties-panel';
 import { conditionalProps } from 'bpmn-js-properties-panel';
 
 // Require your custom property entries.
-import { scriptTaskProperties }  from './parts/ScriptTaskProperties';
-import { taskProperties } from './parts/TaskProperties';
-import { permissionProps } from './parts/PermissionProperties';
-import { conditionProps } from './parts/ConditionProperties';
-import { kitodoNameProps } from './parts/KitodoNameProps';
+import scriptTaskProperties  from './parts/ScriptTaskProperties';
+import taskProperties from './parts/TaskProperties';
+import permissionProps from './parts/PermissionProperties';
+import conditionProps from './parts/ConditionProperties';
+import kitodoNameProps from './parts/KitodoNameProps';
 
 import { is } from 'bpmn-js/lib/util/ModelUtil';
 
