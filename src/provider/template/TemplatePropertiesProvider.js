@@ -5,7 +5,6 @@ import { processProps } from 'bpmn-js-properties-panel';
 import { eventProps } from 'bpmn-js-properties-panel';
 import { linkProps } from 'bpmn-js-properties-panel';
 import { idProps } from  'bpmn-js-properties-panel';
-import { nameProps } from 'bpmn-js-properties-panel';
 import { conditionalProps } from 'bpmn-js-properties-panel';
 
 // Require your custom property entries.
