@@ -1,5 +1,7 @@
 var path = require('path');
 
+var bpmnModdlePath = require.resolve('bpmn-moddle');
+
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
@@ -13,22 +15,8 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    browserify: {
-      options: {
-        browserifyOptions: {
-          debug: false
-        },
-        transform: [
-          [ 'stringify', { extensions: [ '.bpmn' ] } ],
-          [ 'babelify', { global: true, 'presets': ['@babel/preset-env'] }]
-        ],
-        banner: '/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n\n'
-      },
-      src: {
-        files: {
-          'build/modeler.js': [ 'src/**/*.js', '!src/js/**/*.*', '!src/language/**/*.*' ]
-        }
-      },
+    webpack: {
+      modeler: require('./webpack.config.js')
     },
 
     copy: {
@@ -134,7 +122,7 @@ module.exports = function(grunt) {
       },
       js: {
         files : [ 'src/**/*.js'],
-        tasks : ['browserify:src','uglify']
+        tasks : ['webpack:modeler','uglify']
       }
     }
   });
@@ -143,7 +131,7 @@ module.exports = function(grunt) {
     'copy',
     'less',
     'concat:css',
-    'browserify:src',
+    'webpack:modeler',
     'uglify'
   ]);
 
@@ -151,7 +139,7 @@ module.exports = function(grunt) {
     'copy',
     'less',
     'concat:css',
-    'browserify:src',
+    'webpack:modeler',
     'uglify',
     'watch'
   ]);
