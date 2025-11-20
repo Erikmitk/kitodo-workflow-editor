@@ -1,7 +1,5 @@
 var path = require('path');
 
-var bpmnModdlePath = require.resolve('bpmn-moddle');
-
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);

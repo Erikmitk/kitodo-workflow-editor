@@ -1,19 +1,6 @@
 import $ from 'jquery';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 
-import {
-  BpmnPropertiesPanelModule,
-  BpmnPropertiesProviderModule,
-  BpmnTemplateModdleDescriptor,
-
-  // use Camunda Platform properties provider
-  CamundaPlatformPropertiesProviderModule
-} from 'bpmn-js-properties-panel';
-
-import {
-  debounce
-} from 'min-dash';
-
 import diagramXML from '../resources/initialDiagram.bpmn';
 
 var container = $('#js-drop-zone');
