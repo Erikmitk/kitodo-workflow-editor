@@ -38,7 +38,7 @@
     "@babel/runtime": "^7.28.6",
     "@bpmn-io/properties-panel": "^3.39.0",
     "bpmn-js": "^18.12.0",
-    "bpmn-js-properties-panel": "^5.46.0",
+    "bpmn-js-properties-panel": "^5.52.1",
     "bpmn-moddle": "^9.0.4",
     "jquery": "^4.0.0"
   }
