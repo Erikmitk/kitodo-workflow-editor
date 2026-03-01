@@ -1,10 +1,18 @@
 # Custom Build of bpmn.io for Kitodo.Production
 
+[![CI](https://github.com/Erikmitk/kitodo-workflow-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/Erikmitk/kitodo-workflow-editor/actions/workflows/ci.yml)
+
 This project provides a custom build of the bpmn.io editor with properties panel extension for the specific use in Kitodo.Production
 
 ## How to build
 
-This project comes with a [Grunt](https://gruntjs.com/) setup with all the necessary [NPM packages](https://www.npmjs.com/) to build it. You can simply get it running by installing the local needs of NPM with `npm install` on your command line from the root directory. After that, just type `grunt` to start the build process. Additionally, grunt will watch the directories for changes and generates a new build on the fly if anything changes.
+This project uses [NPM](https://www.npmjs.com/) scripts to build. Install dependencies and then use the npm scripts to build:
+
+```sh
+npm install      # install dependencies
+npm run build    # one-time full build → dist/
+npm run dev      # build + watch for changes
+```
 
 ## Build Results
 
@@ -16,6 +24,16 @@ When finished you'll find the final build in the `dist` directory.
 - `index.html` — a simple example page where you can test the editor; it contains static information to test the functionality
 
 The non-minimized/non-concatenated files can be found in the `build` directory.
+
+## Testing
+
+Unit tests use [Jest](https://jestjs.io/). Run them with:
+
+```sh
+npm test
+```
+
+Tests cover the properties panel helpers and localization utilities in `src/provider/template/`.
 
 ## Auto-Update NPM dependencies
 
