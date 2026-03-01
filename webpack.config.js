@@ -38,7 +38,7 @@ module.exports = {
 		  loader: 'babel-loader',
 		  options: {
 			presets: [
-			  ['@babel/preset-env', { targets: "defaults" }]
+			  ['@babel/preset-env', { targets: "last 2 versions, not dead" }]
 			]
 		  }
 		}
@@ -50,5 +50,5 @@ module.exports = {
 	new webpack.BannerPlugin({ banner, raw: true })
   ],
 
-  devtool: 'source-map'
+  devtool: false
 };

@@ -3,7 +3,7 @@
         [
             "@babel/preset-env",
             {
-                "targets": "defaults"
+                "targets": "last 2 versions, not dead"
             }
         ]
     ],
@@ -11,7 +11,7 @@
         [
             "@babel/plugin-transform-runtime",
             {
-                "regenerator": true
+                "regenerator": false
             }
         ]
     ]
