@@ -26,11 +26,13 @@ jobs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+    - name: Archive node_modules
+      run: tar -czf node_modules.tar.gz node_modules/
     - name: Upload node_modules
       uses: actions/upload-artifact@v4
       with:
         name: node-modules
-        path: node_modules/
+        path: node_modules.tar.gz
         retention-days: 1
 
   Build:
@@ -49,7 +51,8 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: node-modules
-        path: node_modules/
+    - name: Extract node_modules
+      run: tar -xzf node_modules.tar.gz
     - name: Build
       run: npm run build
 
@@ -69,6 +72,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: node-modules
-        path: node_modules/
+    - name: Extract node_modules
+      run: tar -xzf node_modules.tar.gz
     - name: Test
       run: npm test
