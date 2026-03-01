@@ -1,6 +1,6 @@
 import TemplatePropertiesProvider from './TemplatePropertiesProvider';
 
 export default {
-  __init__: [ 'propertiesProvider' ],
-  propertiesProvider: [ 'type', TemplatePropertiesProvider ]
+  __init__: [ 'templatePropertiesProvider' ],
+  templatePropertiesProvider: [ 'type', TemplatePropertiesProvider ]
 };

@@ -1,82 +1,69 @@
-import { entryFactory } from 'bpmn-js-properties-panel';
+import { CheckboxEntry, isCheckboxEntryEdited } from '@bpmn-io/properties-panel';
+import { useService } from 'bpmn-js-properties-panel';
 import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
-import { is } from 'bpmn-js/lib/util/ModelUtil';
-import { cmdHelper } from 'bpmn-js-properties-panel';
 
-export default function (group, element, translate) {
+export function permissionPropertiesGroup(element) {
+  var entries = [];
 
-    // Only return an entry, if the currently selected
-    // element is a task.
+  if (typeof availableUserRoles !== 'undefined' && availableUserRoles) {
+    for (var i = 0; i < availableUserRoles.length; i++) {
+      entries.push(createRoleEntry(availableUserRoles[i]));
+    }
+  }
 
-	if (is(element, 'bpmn:Task')) {
+  return {
+    id: 'kitodo-permissions',
+    label: getLocalizedStringForKey('permissionsLabel'),
+    entries: entries
+  };
+}
 
-		$.each(availableUserRoles, function( index, value ) {
-			var permissionCheckbox = entryFactory.checkbox(translate, {
-				id: 'permittedUserRole_' + value['value'],
-				description: '',
-				label: value['name'],
-				modelProperty: 'permittedUserRole_' + index
-			});
+function createRoleEntry(role) {
+  return {
+    id: 'permittedUserRole_' + role.value,
+    component: createRoleComponent(role),
+    isEdited: isCheckboxEntryEdited
+  };
+}
 
-			permissionCheckbox.get = function(element) {
-				var res = {};
+function createRoleComponent(role) {
+  return function(props) {
+    var element = props.element;
+    var commandStack = useService('commandStack');
 
-				var assignedRoles = getBusinessObject(element).get("permittedUserRole");
+    return CheckboxEntry({
+      element: element,
+      id: 'permittedUserRole_' + role.value,
+      label: role.name,
+      getValue: function() {
+        var assignedRoles = getBusinessObject(element).get('template:permittedUserRole');
+        if (!assignedRoles) {
+          return false;
+        }
+        var rolesArray = assignedRoles.split(',');
+        return rolesArray.indexOf(role.value) !== -1;
+      },
+      setValue: function(value) {
+        var assignedRoles = getBusinessObject(element).get('template:permittedUserRole');
+        var rolesArray = assignedRoles ? assignedRoles.split(',').filter(function(r) { return r !== ''; }) : [];
 
-				if (assignedRoles == undefined) {
-					// There are no roles selected so nothing is checked
-					res["permittedUserRole_" + index] = false;
+        if (value) {
+          if (rolesArray.indexOf(role.value) === -1) {
+            rolesArray.push(role.value);
+          }
+        } else {
+          var position = rolesArray.indexOf(role.value);
+          if (position !== -1) {
+            rolesArray.splice(position, 1);
+          }
+        }
 
-					return res;
-				}
-
-				var rolesArray = assignedRoles.split(',');
-				var isSet = rolesArray.indexOf(value['value']);
-
-				if (isSet !== -1) {
-					res["permittedUserRole_" + index] = true;
-				} else {
-					res["permittedUserRole_" + index] = false;
-				}
-
-				return res;
-			};
-
-			permissionCheckbox.set = function(element, values) {
-				var res = {};
-
-				var assignedRoles = getBusinessObject(element).get("permittedUserRole");
-				var rolesArray;
-
-				if (assignedRoles == undefined) {
-					rolesArray = [];
-				} else {
-					rolesArray = assignedRoles.split(',');
-				}
-
-				var checkboxValue = values["permittedUserRole_" + index ];
-
-				if (checkboxValue == undefined) {
-					var position = rolesArray.indexOf(value['value']);
-					rolesArray.splice(position, 1);
-				}
-
-				if (checkboxValue == true) {
-					rolesArray.push(value['value']);
-				}
-
-				var propertyString = rolesArray.join(',');
-
-				if(propertyString.charAt(0) == ",") {
-					propertyString = propertyString.substr(1);
-				}
-
-				res['permittedUserRole'] = propertyString;
-
-				return cmdHelper.updateProperties(element, res);
-			};
-
-			group.entries.push(permissionCheckbox);
-		});
-	}
+        commandStack.execute('element.updateModdleProperties', {
+          element: element,
+          moddleElement: getBusinessObject(element),
+          properties: { 'template:permittedUserRole': rolesArray.join(',') }
+        });
+      }
+    });
+  };
 }

@@ -1,52 +1,58 @@
-import { entryFactory } from 'bpmn-js-properties-panel';
-import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
-import { is } from 'bpmn-js/lib/util/ModelUtil';
-import { cmdHelper } from 'bpmn-js-properties-panel';
+import { TextAreaEntry, isTextAreaEntryEdited } from '@bpmn-io/properties-panel';
+import { useService } from 'bpmn-js-properties-panel';
+import { getBusinessObject, is } from 'bpmn-js/lib/util/ModelUtil';
 
-
-
-module.exports = function(group, element, translate) {
-
-  if (!is(element, 'bpmn:Collaboration')) {
-
-    var options;
-    if (is(element, 'bpmn:TextAnnotation')) {
-      options = { modelProperty: 'text' };
-    }
-
-    options = { id: 'name', label: 'Name', modelProperty: 'name' };
-
-    options.get = function() {
-        var res = {};
-        var assignedName = getBusinessObject(element).get(options.modelProperty);
-
-        // Set a default value if none is assigned
-        if(assignedName == undefined) {
-            if (is(element, 'bpmn:Task')) {
-                res[options.modelProperty] = getLocalizedStringForKey('taskDefaultName');
-            } else if (is(element, 'bpmn:StartEvent')) {
-                res[options.modelProperty] = getLocalizedStringForKey('startEventDefaultName')
-            } else if (is(element, 'bpmn:EndEvent')) {
-                res[options.modelProperty] = getLocalizedStringForKey('endEventDefaultName')
-            }
-        } else {
-            res[options.modelProperty] = assignedName;
-        }
-
-        cmdHelper.updateProperties(element, res);
-
-        return res;
-    }
-
-
-    var nameEntryTextBox = entryFactory.textBox(translate, options);
-
-    if(!is(element, 'bpmn:Task') && !is(element, 'bpmn:StartEvent') && !is(element, 'bpmn:EndEvent')) {
-        nameEntryTextBox.cssClasses = ['hidden'];
-    }
-
-    group.entries = group.entries.concat(nameEntryTextBox);
-
+export function kitodoNameGroup(element) {
+  if (is(element, 'bpmn:Collaboration')) {
+    return null;
   }
 
-};
+  if (!is(element, 'bpmn:Task') && !is(element, 'bpmn:StartEvent') && !is(element, 'bpmn:EndEvent')) {
+    return null;
+  }
+
+  return {
+    id: 'kitodo-name',
+    label: getLocalizedStringForKey('generalGroupLabel'),
+    entries: [
+      {
+        id: 'name',
+        component: KitodoName,
+        isEdited: isTextAreaEntryEdited
+      }
+    ]
+  };
+}
+
+function KitodoName(props) {
+  var element = props.element;
+  var modeling = useService('modeling');
+  var debounce = useService('debounceInput');
+
+  var getValue = function() {
+    var name = getBusinessObject(element).get('name');
+    if (name === undefined || name === null) {
+      if (is(element, 'bpmn:Task')) {
+        return getLocalizedStringForKey('taskDefaultName');
+      } else if (is(element, 'bpmn:StartEvent')) {
+        return getLocalizedStringForKey('startEventDefaultName');
+      } else if (is(element, 'bpmn:EndEvent')) {
+        return getLocalizedStringForKey('endEventDefaultName');
+      }
+    }
+    return name || '';
+  };
+
+  var setValue = function(value) {
+    modeling.updateProperties(element, { name: value });
+  };
+
+  return TextAreaEntry({
+    element: element,
+    id: 'name',
+    label: 'Name',
+    getValue: getValue,
+    setValue: setValue,
+    debounce: debounce
+  });
+}

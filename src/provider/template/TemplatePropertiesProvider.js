@@ -1,84 +1,38 @@
-import inherits from 'inherits';
+import { is } from 'bpmn-js/lib/util/ModelUtil';
+import { kitodoNameGroup } from './parts/KitodoNameProps';
+import { taskPropertiesGroup } from './parts/TaskProperties';
+import { permissionPropertiesGroup } from './parts/PermissionProperties';
+import { scriptTaskPropertiesGroup } from './parts/ScriptTaskProperties';
+import { conditionPropertiesGroup } from './parts/ConditionProperties';
 
-import scriptTaskProperties from './parts/ScriptTaskProperties';
-import taskProperties from './parts/TaskProperties';
-import permissionProps from './parts/PermissionProperties';
-import conditionProps from './parts/ConditionProperties';
-import kitodoNameProps from './parts/KitodoNameProps';
+var LOW_PRIORITY = 500;
 
-export default function TemplatePropertiesProvider(eventBus, bpmnFactory, elementRegistry, translate) {
-
-    PropertiesActivator.call(this, eventBus);
-
-    // Create general tab groups
-    function createGeneralTabGroups(element) {
-        const generalGroup = {
-            id: 'general',
-            label: getLocalizedStringForKey('generalGroupLabel'),
-            entries: []
-        };
-
-        // Add name properties
-        kitodoNameProps(generalGroup, element, translate);
-
-        // Add task-specific properties
-        if (element.type === 'bpmn:Task') {
-            taskProperties(generalGroup, element, translate);
-        }
-
-        const scriptTaskGroup = {
-            id: 'scriptTask',
-            label: getLocalizedStringForKey('scriptGroupLabel'),
-            entries: []
-        };
-
-        if (element.type === 'bpmn:ScriptTask') {
-            scriptTaskProperties(scriptTaskGroup, element);
-        }
-
-        // Only include scriptTaskGroup if it has entries
-        const groups = [generalGroup];
-        if (scriptTaskGroup.entries.length > 0) {
-            groups.push(scriptTaskGroup);
-        }
-
-        return groups;
-    }
-
-    // Create permissions tab
-    function createPermissionTabGroups(element) {
-        const permissionGroup = { id: 'permission', label: getLocalizedStringForKey('permissionsLabel'), entries: [] };
-        permissionProps(permissionGroup, element);
-        return [permissionGroup];
-    }
-
-    // Create conditions tab
-    function createConditionTabGroups(element) {
-        const conditionGroup = { id: 'condition', label: getLocalizedStringForKey('conditionLabel'), entries: [] };
-        conditionProps(conditionGroup, element, translate);
-        return [conditionGroup];
-    }
-
-    // Define tabs
-    this.getTabs = function(element) {
-        return [
-            {
-                id: 'general',
-                label: getLocalizedStringForKey('propertiesLabel'),
-                groups: createGeneralTabGroups(element)
-            },
-            {
-                id: 'permissions',
-                label: getLocalizedStringForKey('permissionsLabel'),
-                groups: createPermissionTabGroups(element)
-            },
-            {
-                id: 'conditions',
-                label: getLocalizedStringForKey('conditionLabel'),
-                groups: createConditionTabGroups(element)
-            }
-        ];
-    };
+export default function TemplatePropertiesProvider(propertiesPanel, injector) {
+  propertiesPanel.registerProvider(LOW_PRIORITY, this);
+  this._injector = injector;
 }
 
-inherits(TemplatePropertiesProvider, PropertiesActivator);
+TemplatePropertiesProvider.$inject = ['propertiesPanel', 'injector'];
+
+TemplatePropertiesProvider.prototype.getGroups = function(element) {
+  return function(groups) {
+    if (is(element, 'bpmn:Task') || is(element, 'bpmn:StartEvent') || is(element, 'bpmn:EndEvent')) {
+      var nameGroup = kitodoNameGroup(element);
+      if (nameGroup) {
+        groups.push(nameGroup);
+      }
+    }
+
+    if (is(element, 'bpmn:Task')) {
+      groups.push(taskPropertiesGroup(element));
+      groups.push(permissionPropertiesGroup(element));
+      groups.push(conditionPropertiesGroup(element));
+    }
+
+    if (is(element, 'bpmn:ScriptTask')) {
+      groups.push(scriptTaskPropertiesGroup(element));
+    }
+
+    return groups;
+  };
+};
