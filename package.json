@@ -1,6 +1,6 @@
 {
   "name": "bpmn-editor-customization-kitodo-production",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "A customized version of BPMN.io with property panel extension",
   "main": "src/index.js",
   "scripts": {
