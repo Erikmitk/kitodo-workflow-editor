@@ -1,4 +1,4 @@
-de_DE = {
+var de_DE = {
     "generalGroupLabel": "Allgemeine Eigenschaften",
     "taskGroupLabel": "Aufgaben Eigenschaften",
     "scriptGroupLabel": "Skript Eigenschaften",
@@ -49,3 +49,4 @@ de_DE = {
     "startEventDefaultName": "Start",
     "endEventDefaultName": "Ende"
 }
+if (typeof module !== 'undefined') module.exports = de_DE;

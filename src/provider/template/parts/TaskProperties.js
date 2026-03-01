@@ -73,7 +73,7 @@ function ProcessingStatus(props) {
 }
 
 // Helper: generate entry descriptors for all boolean checkbox properties
-var BOOLEAN_PROPS = [
+export var BOOLEAN_PROPS = [
   { id: 'typeMetadata', labelKey: 'metadata', descKey: 'metadataDescription', attr: 'typeMetadata' },
   { id: 'typeImagesRead', labelKey: 'typeImagesRead', descKey: 'typeImagesReadDescription', attr: 'typeImagesRead' },
   { id: 'typeImagesWrite', labelKey: 'typeImagesWrite', descKey: 'typeImagesWriteDescription', attr: 'typeImagesWrite' },

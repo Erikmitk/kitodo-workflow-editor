@@ -1,4 +1,4 @@
-en_EN = {
+var en_EN = {
     "generalGroupLabel": "General Properties",
     "taskGroupLabel": "Task Properties",
     "scriptGroupLabel": "Script Properties",
@@ -49,3 +49,4 @@ en_EN = {
     "startEventDefaultName": "Start",
     "endEventDefaultName": "End"
 }
+if (typeof module !== 'undefined') module.exports = en_EN;

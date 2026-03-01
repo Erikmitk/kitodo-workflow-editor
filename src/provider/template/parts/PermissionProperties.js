@@ -2,6 +2,24 @@ import { CheckboxEntry, isCheckboxEntryEdited } from '@bpmn-io/properties-panel'
 import { useService } from 'bpmn-js-properties-panel';
 import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
 
+export function isRoleAssigned(assignedRolesCSV, roleValue) {
+  if (!assignedRolesCSV) return false;
+  return assignedRolesCSV.split(',').indexOf(roleValue) !== -1;
+}
+
+export function toggleRole(assignedRolesCSV, roleValue, enable) {
+  var rolesArray = assignedRolesCSV
+    ? assignedRolesCSV.split(',').filter(function(r) { return r !== ''; })
+    : [];
+  if (enable) {
+    if (rolesArray.indexOf(roleValue) === -1) rolesArray.push(roleValue);
+  } else {
+    var pos = rolesArray.indexOf(roleValue);
+    if (pos !== -1) rolesArray.splice(pos, 1);
+  }
+  return rolesArray.join(',');
+}
+
 export function permissionPropertiesGroup(element) {
   var entries = [];
 
@@ -37,31 +55,15 @@ function createRoleComponent(role) {
       label: role.name,
       getValue: function() {
         var assignedRoles = getBusinessObject(element).get('template:permittedUserRole');
-        if (!assignedRoles) {
-          return false;
-        }
-        var rolesArray = assignedRoles.split(',');
-        return rolesArray.indexOf(role.value) !== -1;
+        return isRoleAssigned(assignedRoles, role.value);
       },
       setValue: function(value) {
         var assignedRoles = getBusinessObject(element).get('template:permittedUserRole');
-        var rolesArray = assignedRoles ? assignedRoles.split(',').filter(function(r) { return r !== ''; }) : [];
-
-        if (value) {
-          if (rolesArray.indexOf(role.value) === -1) {
-            rolesArray.push(role.value);
-          }
-        } else {
-          var position = rolesArray.indexOf(role.value);
-          if (position !== -1) {
-            rolesArray.splice(position, 1);
-          }
-        }
-
+        var updated = toggleRole(assignedRoles, role.value, value);
         commandStack.execute('element.updateModdleProperties', {
           element: element,
           moddleElement: getBusinessObject(element),
-          properties: { 'template:permittedUserRole': rolesArray.join(',') }
+          properties: { 'template:permittedUserRole': updated }
         });
       }
     });
