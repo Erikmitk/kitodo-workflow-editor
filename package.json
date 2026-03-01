@@ -34,7 +34,7 @@
     "jest-environment-jsdom": "^29",
     "load-grunt-tasks": "^5.1.0",
     "raw-loader": "^4.0.2",
-    "webpack": "^5.105.2",
+    "webpack": "^5.105.3",
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
