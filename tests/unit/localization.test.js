@@ -2,6 +2,7 @@
 
 const de_DE = require('../../src/language/de_DE');
 const en_EN = require('../../src/language/en_EN');
+const es_ES = require('../../src/language/es_ES');
 
 // Local re-implementation of getLocalizedStringForKey logic (from modeler_custom.js)
 function getLocalizedString(key, language) {
@@ -34,5 +35,11 @@ describe('Localization', () => {
     const deKeys = Object.keys(de_DE).sort();
     const enKeys = Object.keys(en_EN).sort();
     expect(deKeys).toEqual(enKeys);
+  });
+
+  test('es_ES has exactly the same set of keys as de_DE', () => {
+    const deKeys = Object.keys(de_DE).sort();
+    const esKeys = Object.keys(es_ES).sort();
+    expect(esKeys).toEqual(deKeys);
   });
 });
