@@ -4,6 +4,14 @@
 
 This project provides a custom build of the bpmn.io editor with properties panel extension for the specific use in Kitodo.Production
 
+## Suggested Development Environment
+
+For working on this editor alongside a real [Kitodo.Production](https://github.com/slub/kitodo-production) instance, we suggest using the [kitodo-integration](https://github.com/Erikmitk/kitodo-integration) dev environment. It wires up both repos as submodules, builds everything with a single script, and serves a fully functional Kitodo.Production stack in Docker — so you can verify editor changes in context without maintaining a separate, isolated production setup.
+
+See the [kitodo-integration README](https://github.com/Erikmitk/kitodo-integration) for setup instructions.
+
+The standalone build steps below are useful for running unit tests or building the editor in isolation.
+
 ## How to build
 
 This project uses [NPM](https://www.npmjs.com/) scripts to build. Install dependencies and then use the npm scripts to build:
