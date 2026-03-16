@@ -82,6 +82,66 @@ var saveDiagram = async function() {
 
 bpmnModeler.on('commandStack.changed', saveDiagram);
 
+bpmnModeler.on('contextPad.open', function() {
+  try {
+    document.querySelectorAll('.djs-context-pad .entry[title]').forEach(function(el) {
+      var key = el.getAttribute('title');
+      var translated = getLocalizedStringForKey(key);
+      el.setAttribute('title', translated);
+    });
+  } catch (e) {
+    console.warn('contextPad translation failed:', e);
+  }
+});
+
+function patchPaletteTooltips() {
+  try {
+    document.querySelectorAll('.djs-palette .entry[title]').forEach(function(el) {
+      var key = el.getAttribute('title');
+      var translated = getLocalizedStringForKey(key);
+      el.setAttribute('title', translated);
+    });
+  } catch (e) {
+    console.warn('palette translation failed:', e);
+  }
+}
+
+function patchTextNode(el) {
+  var textNode = el.firstChild;
+  if (!textNode || textNode.nodeType !== 3) return;
+  var key = textNode.nodeValue.trim();
+  var translated = getLocalizedStringForKey(key);
+  if (translated !== key) {
+    textNode.nodeValue = translated;
+  }
+}
+
+function patchPropertiesPanel() {
+  try {
+    var typeEl = document.querySelector('.bio-properties-panel-header-type');
+    if (typeEl) patchTextNode(typeEl);
+    document.querySelectorAll('.bio-properties-panel-group-header-title').forEach(patchTextNode);
+  } catch (e) {
+    console.warn('properties panel translation failed:', e);
+  }
+}
+
+bpmnModeler.on('palette.create', patchPaletteTooltips);
+bpmnModeler.on('palette.changed', patchPaletteTooltips);
+
+bpmnModeler.on('import.done', function() {
+  patchPaletteTooltips();
+  patchPropertiesPanel();
+
+  var panelContainer = document.getElementById('js-properties-panel');
+  if (panelContainer) {
+    var observer = new MutationObserver(function() {
+      patchPropertiesPanel();
+    });
+    observer.observe(panelContainer, { subtree: true, childList: true, characterData: true });
+  }
+});
+
 var modelerActions = {
 
   'modeler.toggleFullscreen': function() {

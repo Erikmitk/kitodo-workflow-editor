@@ -16,6 +16,8 @@ TemplatePropertiesProvider.$inject = ['propertiesPanel', 'injector'];
 
 TemplatePropertiesProvider.prototype.getGroups = function(element) {
   return function(groups) {
+    groups = groups.filter(function(g) { return g.id !== 'documentation'; });
+
     if (is(element, 'bpmn:Task') || is(element, 'bpmn:StartEvent') || is(element, 'bpmn:EndEvent')) {
       var nameGroup = kitodoNameGroup(element);
       if (nameGroup) {
