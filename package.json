@@ -38,7 +38,7 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@bpmn-io/properties-panel": "^3.40.3",
     "bpmn-js": "^18.13.1",
     "bpmn-js-properties-panel": "^5.53.0",
