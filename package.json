@@ -35,7 +35,7 @@
     "load-grunt-tasks": "^5.1.0",
     "raw-loader": "^4.0.2",
     "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.2"
+    "webpack-cli": "^7.0.3"
   },
   "dependencies": {
     "@babel/runtime": "^7.29.7",
