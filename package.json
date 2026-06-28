@@ -1,6 +1,6 @@
 {
   "name": "bpmn-editor-customization-kitodo-production",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A customized version of BPMN.io with property panel extension",
   "main": "src/index.js",
   "scripts": {
@@ -51,7 +51,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testMatch": ["**/tests/**/*.test.js"],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
     "transform": {
       "^.+\\.js$": "babel-jest"
     },
