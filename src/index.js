@@ -3,9 +3,14 @@ import BpmnModeler from 'bpmn-js/lib/Modeler';
 import { BpmnPropertiesPanelModule, BpmnPropertiesProviderModule } from 'bpmn-js-properties-panel';
 import templateModdleDescriptor from './moddle/TemplateModdleDescriptor.json';
 import templatePropertiesProviderModule from './provider/template';
+import KitodoReplaceMenuProvider from './js/KitodoReplaceMenuProvider';
 import diagramXML from '../resources/initialDiagram.bpmn';
 
 var container = $('#js-drop-zone');
+
+var kitodoReplaceMenuModule = {
+  replaceMenuProvider: [ 'type', KitodoReplaceMenuProvider ]
+};
 
 var bpmnModeler = new BpmnModeler({
   container: '#js-canvas',
@@ -15,7 +20,8 @@ var bpmnModeler = new BpmnModeler({
   additionalModules: [
     BpmnPropertiesPanelModule,
     BpmnPropertiesProviderModule,
-    templatePropertiesProviderModule
+    templatePropertiesProviderModule,
+    kitodoReplaceMenuModule
   ],
   moddleExtensions: {
     template: templateModdleDescriptor,
