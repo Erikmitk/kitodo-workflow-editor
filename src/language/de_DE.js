@@ -73,6 +73,8 @@ var de_DE = {
     "Create group": "Gruppe erstellen",
     "General": "Allgemeines",
     "Task": "Aufgabe",
+    "Script task": "Skript-Aufgabe",
+    "Script Task": "Skript-Aufgabe",
     "Start Event": "Startereignis",
     "End Event": "Endereignis",
     "Gateway": "Gateway",

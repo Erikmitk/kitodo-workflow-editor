@@ -73,6 +73,8 @@ var en_EN = {
     "Create group": "Create group",
     "General": "General",
     "Task": "Task",
+    "Script task": "Script task",
+    "Script Task": "Script Task",
     "Start Event": "Start Event",
     "End Event": "End Event",
     "Gateway": "Gateway",

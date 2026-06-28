@@ -73,6 +73,8 @@ var es_ES = {
     "Create group": "Crear grupo",
     "General": "General",
     "Task": "Tarea",
+    "Script task": "Tarea de guión",
+    "Script Task": "Tarea de guión",
     "Start Event": "Evento de inicio",
     "End Event": "Evento de fin",
     "Gateway": "Puerta de enlace",

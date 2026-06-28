@@ -90,7 +90,7 @@ module.exports = function(grunt) {
         options: {
           mangle:false,
           compress: true,
-          output: { comments: false },
+          output: { comments: false, ascii_only: true },
           banner: '/**\n * (c) Kitodo. Key to digital objects e. V. <contact@kitodo.org>\n *\n * This file is part of the Kitodo project.\n *\n * It is licensed under MIT License by camunda Services GmbH\n *\n * For the full copyright and license information, please read the\n * Camunda-License.txt file that was distributed with this source code.\n*/\n\n'
         },
         files: {

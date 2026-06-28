@@ -4,6 +4,20 @@ import { BpmnPropertiesPanelModule, BpmnPropertiesProviderModule } from 'bpmn-js
 import templateModdleDescriptor from './moddle/TemplateModdleDescriptor.json';
 import templatePropertiesProviderModule from './provider/template';
 import KitodoReplaceMenuProvider from './js/KitodoReplaceMenuProvider';
+var customTranslateModule = {
+  translate: ['value', function(template, replacements) {
+    /* global getLocalizedStringForKey */
+    var translated = typeof getLocalizedStringForKey === 'function'
+      ? getLocalizedStringForKey(template)
+      : template;
+    if (replacements) {
+      translated = translated.replace(/{([^}]+)}/g, function(_, key) {
+        return String(replacements[key] !== undefined ? replacements[key] : '{' + key + '}');
+      });
+    }
+    return translated;
+  }]
+};
 import diagramXML from '../resources/initialDiagram.bpmn';
 
 var container = $('#js-drop-zone');
@@ -18,6 +32,7 @@ var bpmnModeler = new BpmnModeler({
     parent: '#js-properties-panel'
   },
   additionalModules: [
+    customTranslateModule,
     BpmnPropertiesPanelModule,
     BpmnPropertiesProviderModule,
     templatePropertiesProviderModule,
