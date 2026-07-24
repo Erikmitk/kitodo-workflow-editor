@@ -40,7 +40,7 @@
   "dependencies": {
     "@babel/runtime": "^7.29.7",
     "@bpmn-io/properties-panel": "^3.44.0",
-    "bpmn-js": "^18.16.1",
+    "bpmn-js": "^18.22.0",
     "bpmn-js-properties-panel": "^5.58.0",
     "bpmn-moddle": "^10.0.0",
     "jquery": "^4.0.0"
